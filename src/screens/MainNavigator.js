@@ -3,4 +3,6 @@ import GuestIndex from './guest/Index'
 
 export default StackNavigator({
   GuestIndex: { screen: GuestIndex }
+}, {
+  headerMode: 'none',
 })

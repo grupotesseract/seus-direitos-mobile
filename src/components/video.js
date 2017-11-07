@@ -3,7 +3,8 @@ import {TouchableHighlight, Image, View} from 'react-native'
 import { StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 import {Video as ExpoVideo} from 'expo'
-import { SCREEN_WIDTH } from '../utils/constants';
+import { SCREEN_WIDTH } from '../utils/constants'
+import playButton from '../../assets/icons/play-button.png'
 
 const styles = StyleSheet.create({
   container: {
@@ -34,15 +35,15 @@ class Video extends React.Component {
     return (
       <TouchableHighlight onPress={() => this.setState({ play: !play })}>
         <View style={styles.container}>
-          { !play && <Image source={require('../../assets/icons/play-button.png')} style={styles.playBtn} /> }
+          { !play && <Image source={playButton} style={styles.playBtn} /> }
           <ExpoVideo
             source={{ uri }}
             rate={1.0}
             volume={1.0}
             muted={false}
             resizeMode="cover"
+            repeat
             shouldPlay={play}
-            useNativeControls={play}
             style={styles.video}
           />
         </View>

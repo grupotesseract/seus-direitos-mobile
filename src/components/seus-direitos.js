@@ -25,7 +25,7 @@ export default function ({ noMargin = false }) {
         type="subheader"
         align="center"
         color="#6198D8"
-        text="CONVENÇÀO COLETIVA DE TRABALHO"
+        text="CONVENÇÃO COLETIVA DE TRABALHO"
       />
     </View>
   )

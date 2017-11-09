@@ -15,7 +15,7 @@ export default function ({ text = '', color = '#777', type  = null, align = 'lef
   }
 
   if (type === 'subheader') {
-    return <H3 style={styles}>{text}</H3>
+    return <H3 style={[styles, { fontSize: 18 }]}>{text}</H3>
   }
 
   return <Text style={styles}>{text}</Text>

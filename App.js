@@ -7,7 +7,7 @@ import MainNavigator from './src/screens/MainNavigator'
 import {STATUS_BAR_HEIGHT} from './src/utils/constants'
 import getTheme from './native-base-theme/components'
 import material from './native-base-theme/variables/material'
-import { StyleProvider } from 'native-base';
+import { StyleProvider, Root } from 'native-base';
 
 const store = createStore()
 
@@ -51,7 +51,9 @@ export default class App extends React.Component {
         <StyleProvider style={getTheme(material)}>
           <View style={styles.container}>
             <CustomStatusBar barStyle="light-content" backgroundColor="#3F51B5" translucent  />
-            <MainNavigator />
+            <Root>
+              <MainNavigator />
+            </Root>
           </View>
         </StyleProvider>
       </Provider>

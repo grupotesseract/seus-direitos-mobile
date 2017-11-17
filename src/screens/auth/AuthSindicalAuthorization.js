@@ -2,7 +2,6 @@ import React from 'react'
 import { StyleSheet, Platform } from 'react-native'
 import MainView from '../../components/main'
 import { Container, Content, View, Button, Text, Toast, Icon } from 'native-base';
-import Title from '../../components/title'
 
 const styles = StyleSheet.create({
   mt: {

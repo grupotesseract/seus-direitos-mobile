@@ -11,37 +11,40 @@ const styles = StyleSheet.create({
   },
 })
 
-function form ({ handleSubmit, pristine, invalid, submitting }) {
-  return (
-    <View>
-      <Field
-        name="login"
-        label="Login"
-        type="email-address"
-        component={TextInput}
-        normalize={value => value && value.toLowerCase()}
-        validate={email}
-      />
+class LoginForm extends React.Component {
+  render () {
+    const {handleSubmit, pristine, invalid, submitting} = this.props
+    return (
+      <View>
+        <Field
+          name="email"
+          label="E-mail"
+          type="email-address"
+          component={TextInput}
+          normalize={value => value && value.toLowerCase()}
+          validate={[required, email]}
+        />
 
-      <Field
-        name="password"
-        label="Senha"
-        secure
-        component={TextInput}
-        validate={required}
-      />
+        <Field
+          name="password"
+          label="Senha"
+          secure
+          component={TextInput}
+          validate={required}
+        />
 
-      <Button full
-              primary
-              style={styles.mt}
-              onPress={handleSubmit}
-              disabled={pristine || invalid || submitting}>
-        <Text>ENTRAR</Text>
-      </Button>
-    </View>
-  )
+        <Button full
+                primary
+                style={styles.mt}
+                onPress={handleSubmit}
+                disabled={pristine || invalid || submitting}>
+          <Text>ENTRAR</Text>
+        </Button>
+      </View>
+    )
+  }
 }
 
 export default reduxForm({
   form: 'loginForm'
-})(form)
+})(LoginForm)

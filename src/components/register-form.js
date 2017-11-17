@@ -75,10 +75,11 @@ class RegisterForm extends React.Component {
         />
 
         <Button full
-                primary
-                style={{marginTop: 10}}
-                onPress={handleSubmit}
-                disabled={pristine || invalid || submitting}>
+          primary
+          style={{marginTop: 16, marginBottom: 16 }}
+          onPress={handleSubmit}
+          disabled={pristine || invalid || submitting}
+        >
           <Text>CRIAR MINHA CONTA</Text>
         </Button>
       </View>

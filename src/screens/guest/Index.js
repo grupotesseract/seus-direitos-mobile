@@ -7,6 +7,7 @@ import LoginForm from '../../components/login-form'
 import { Container, Content, Button, Text } from 'native-base'
 import {validateCredentials} from '../../api/auth'
 import {AUTH_FAILED} from '../../actions/types'
+import {WebBrowser} from 'expo'
 
 const styles = StyleSheet.create({
   mt: {
@@ -101,7 +102,7 @@ class guestIndex extends React.Component {
             block
             rounded
             primary
-            onPress={() => this.props.navigation.navigate('Login')}
+            onPress={() => WebBrowser.openBrowserAsync('https://www.empregasaopaulo.sp.gov.br/IMO/aprendiz/pdf/CLT%20-%20Consolidacao%20das%20Leis%20Trabalhistas.pdf')}
           >
             <Text style={styles.white}>CONSULTAR CLT</Text>
           </Button>

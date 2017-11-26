@@ -1,6 +1,6 @@
 import React from 'react'
-import {View, FlatList, TouchableOpacity} from 'react-native'
-import {Item, Input, Icon, Label, Button, Badge, Text} from 'native-base'
+import {View, FlatList} from 'react-native'
+import {Button, Text} from 'native-base'
 import matchSorter from 'match-sorter'
 import TextInput from './text'
 
@@ -9,13 +9,9 @@ function renderItem (item, input) {
     return input.onChange(item)
   }
 
-  return (
-    <TouchableOpacity onPress={handlePress} style={{ zIndex: 999, marginLeft: 10 }}>
-      <Badge primary>
-        <Text>{item.name}</Text>
-      </Badge>
-    </TouchableOpacity>
-  )
+  return <Button rounded onPress={handlePress} style={{ zIndex: 999, marginRight: 10, maxWidth: 270 }}>
+    <Text>{item.name}</Text>
+  </Button>
 }
 
 export default function ({label, input, meta, options = []}) {
@@ -32,8 +28,8 @@ export default function ({label, input, meta, options = []}) {
       { !!input.value &&
         typeof input.value !== 'object' &&
         data.length > 0 &&
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Text style={{ color: '#777' }}>Selecione:</Text>
+        <View>
+          <Text style={{ color: '#777', marginBottom: 5 }}>Clique em uma das opções:</Text>
           <FlatList
             horizontal
             showsHorizontalScrollIndicator={false}

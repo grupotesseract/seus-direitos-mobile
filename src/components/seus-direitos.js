@@ -17,16 +17,18 @@ const styles = StyleSheet.create({
   }
 })
 
-export default function ({ noMargin = false }) {
+export default function ({ noMargin = false, noTitle = false }) {
   return (
     <View style={[styles.container, !noMargin && styles.margin]}>
       <Image source={require('../../assets/icons/seus-direitos.png')} style={styles.img} />
-      <Title
-        type="subheader"
-        align="center"
-        color="#6198D8"
-        text="CONVENÇÃO COLETIVA DE TRABALHO"
-      />
+      { !noTitle &&
+        <Title
+          type="subheader"
+          align="center"
+          color="#6198D8"
+          text="CONVENÇÃO COLETIVA DE TRABALHO"
+        />
+      }
     </View>
   )
 }

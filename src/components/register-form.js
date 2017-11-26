@@ -10,7 +10,18 @@ import PickerInput from '../components/form/picker'
 
 class RegisterForm extends React.Component {
   render () {
-    const {sindicates, hasMoreCities, handleSubmit, sindicateCities, pristine, invalid, submitting, change, untouch, touch} = this.props
+    const {
+      sindicates,
+      hasMoreCities,
+      handleSubmit,
+      sindicateCities,
+      pristine,
+      invalid,
+      submitting,
+      change,
+      untouch,
+      touch
+    } = this.props
 
     return (
       <View style={{marginTop: 10}}>

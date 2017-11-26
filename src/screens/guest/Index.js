@@ -1,18 +1,16 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import SeusDireitos from '../../components/seus-direitos'
-import Title from '../../components/title'
 import Video from '../../components/video'
 import MainView from '../../components/main'
 import LoginForm from '../../components/login-form'
 import { Container, Content, Button, Text } from 'native-base'
-import {stopSubmit, SubmissionError} from 'redux-form'
 import {validateCredentials} from '../../api/auth'
 import {AUTH_FAILED} from '../../actions/types'
 
 const styles = StyleSheet.create({
   mt: {
-    marginTop: 10,
+    marginTop: 16,
   },
   mb: {
     marginBottom: 16
@@ -39,6 +37,12 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     paddingHorizontal: 20,
     paddingVertical: 12
+  },
+  register: {
+    flexDirection: 'row',
+    height: 50,
+    justifyContent: 'center',
+    marginTop: 10
   },
   errorText: {
     color: '#721C2A',
@@ -70,46 +74,38 @@ class guestIndex extends React.Component {
   render () {
     const {error} = this.state
     return (
-      <MainView>
-        <Content>
-          <View style={styles.mt}>
-            <Title align="center" text="Não conhece nossa missão?" />
-            <Title align="center" text="Veja nosso vídeo de apresentação"  gutterBottom />
-            <Video uri='http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' />
-          </View>
+      <MainView extraScroll={5}>
+        <Video uri='http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' />
 
-          <View style={styles.bordered}>
-            <SeusDireitos noMargin />
+        <View style={styles.bordered}>
+          <SeusDireitos noMargin />
 
-            <View style={[styles.paddingH, styles.mt]}>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Text>
-                  Não possui uma conta?
-                </Text>
-                <Button transparent style={{ height: 30 }} onPress={this.handleRegister}>
-                  <Text style={{ paddingLeft: 5 }}>Cadastre-se!</Text>
-                </Button>
-              </View>
-              { !!error &&
-                <View style={styles.errorBox}>
-                  <Text style={styles.errorText}>{error}</Text>
-                </View>
-              }
-              <LoginForm  onSubmit={this.handleSubmit} onChange={() => this.setState({ error: null })} />
+          <View style={[styles.paddingH]}>
+            <View style={styles.register}>
+              <Text style={{ alignSelf: 'center' }}>Não possui uma conta?</Text>
+              <Button transparent style={{ width: 100, alignSelf: 'center' }} onPress={this.handleRegister}>
+                <Text style={{ paddingLeft: 5, paddingRight: 0 }}>Cadastre-se!</Text>
+              </Button>
             </View>
+            { !!error &&
+              <View style={styles.errorBox}>
+                <Text style={styles.errorText}>{error}</Text>
+              </View>
+            }
+            <LoginForm  onSubmit={this.handleSubmit} onChange={() => this.setState({ error: null })} />
           </View>
+        </View>
 
-          <View style={[styles.paddingH, styles.mb]}>
-            <Button
-              block
-              rounded
-              primary
-              onPress={() => this.props.navigation.navigate('Login')}
-            >
-              <Text style={styles.white}>CONSULTAR CLT</Text>
-            </Button>
-          </View>
-        </Content>
+        <View style={[styles.paddingH, styles.mb]}>
+          <Button
+            block
+            rounded
+            primary
+            onPress={() => this.props.navigation.navigate('Login')}
+          >
+            <Text style={styles.white}>CONSULTAR CLT</Text>
+          </Button>
+        </View>
       </MainView>
     )
   }

@@ -53,8 +53,8 @@ class GuestRegister extends React.Component {
     const {sindicates} = this.state
 
     return (
-      <MainView padder extraScroll={55}>
-        <SeusDireitos />
+      <MainView padder extraScroll={85}>
+        <SeusDireitos noTitle />
         <RegisterForm onSubmit={this.handleSubmit} sindicates={sindicates} />
       </MainView>
     )

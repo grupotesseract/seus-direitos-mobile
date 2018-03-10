@@ -6,12 +6,12 @@ export default function ({ text = '', color = '#777', type  = null, align = 'lef
     color,
     textAlign: align,
     marginBottom: gutterBottom ? 10 : 0,
-    fontFamily: !type ? 'roboto' : 'roboto-mono-bold',
+    fontFamily: type === 'header' ? 'roboto-medium' : 'roboto',
     ...style
   }
 
   if (type === 'header') {
-    return <H1 style={styles}>{text}</H1>
+    return <H1 style={[styles, { color: '#6198D8' }]}>{text}</H1>
   }
 
   if (type === 'subheader') {

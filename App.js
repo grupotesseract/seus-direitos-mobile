@@ -12,9 +12,6 @@ import { StyleProvider, Root } from 'native-base';
 const store = createStore()
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   statusBar: {
     height: STATUS_BAR_HEIGHT,
   }
@@ -49,12 +46,10 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <StyleProvider style={getTheme(material)}>
-          <View style={styles.container}>
+          <Root>
             <CustomStatusBar barStyle="light-content" backgroundColor="#3F51B5" translucent  />
-            <Root>
-              <MainNavigator />
-            </Root>
-          </View>
+            <MainNavigator />
+          </Root>
         </StyleProvider>
       </Provider>
     )

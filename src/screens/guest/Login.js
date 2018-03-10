@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import SeusDireitos from '../../components/seus-direitos'
+import SeuSindicato from '../../components/seu-sindicato'
 import Video from '../../components/video'
 import MainView from '../../components/main'
 import LoginForm from '../../components/login-form'
@@ -19,15 +19,23 @@ const styles = StyleSheet.create({
   bordered: {
     padding: 16,
     margin: 16,
-    borderRadius: 8,
-    borderColor:'#ccc',
-    borderWidth: 1,
   },
   paddingH: {
     paddingHorizontal: 16
   },
-  white: {
-    color: 'white'
+  consultarClt: {
+    fontSize: 16,
+    fontFamily: 'roboto-medium',
+    marginVertical: 16,
+    textAlign: 'center',
+    color: '#6198D8'
+  },
+  verVideos: {
+    fontSize: 16,
+    fontFamily: 'roboto-medium',
+    marginVertical: 16,
+    textAlign: 'center',
+    color: '#D86161'
   },
   errorBox: {
     marginTop: 10,
@@ -76,16 +84,14 @@ class guestIndex extends React.Component {
     const {error} = this.state
     return (
       <MainView extraScroll={5}>
-        <Video uri='http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' />
-
         <View style={styles.bordered}>
-          <SeusDireitos noMargin />
+          <SeuSindicato noMargin />
 
           <View style={[styles.paddingH]}>
             <View style={styles.register}>
               <Text style={{ alignSelf: 'center' }}>Não possui uma conta?</Text>
               <Button transparent style={{ width: 100, alignSelf: 'center' }} onPress={this.handleRegister}>
-                <Text style={{ paddingLeft: 5, paddingRight: 0 }}>Cadastre-se!</Text>
+                <Text style={{ color: '#020F50', paddingLeft: 5, paddingRight: 0 }}>Cadastre-se!</Text>
               </Button>
             </View>
             { !!error &&
@@ -93,19 +99,24 @@ class guestIndex extends React.Component {
                 <Text style={styles.errorText}>{error}</Text>
               </View>
             }
-            <LoginForm  onSubmit={this.handleSubmit} onChange={() => this.setState({ error: null })} />
           </View>
+
+          <LoginForm  onSubmit={this.handleSubmit} onChange={() => this.setState({ error: null })} />
         </View>
 
         <View style={[styles.paddingH, styles.mb]}>
-          <Button
-            block
-            rounded
-            primary
+          <Text
+            style={styles.verVideos}
+          >
+            VER TODOS OS VIDEOS
+          </Text>
+
+          <Text
+            style={styles.consultarClt}
             onPress={() => WebBrowser.openBrowserAsync('https://www.empregasaopaulo.sp.gov.br/IMO/aprendiz/pdf/CLT%20-%20Consolidacao%20das%20Leis%20Trabalhistas.pdf')}
           >
-            <Text style={styles.white}>CONSULTAR CLT</Text>
-          </Button>
+            CONSULTAR CLT
+          </Text>
         </View>
       </MainView>
     )

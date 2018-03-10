@@ -33,6 +33,8 @@ class LoginForm extends React.Component {
           validate={required}
         />
 
+        <Text style={{ textAlign: 'right', marginVertical: 12 }}>Esqueceu sua senha?</Text>
+
         <Button full
                 primary
                 style={styles.mt}

@@ -14,7 +14,13 @@ export default function ({ input,
     <View style={{ marginVertical: 10 }}>
       <Item error={hasError} floatingLabel style={{ flexDirection: 'row-reverse' }}>
         <Label>{label}</Label>
-        <Input secureTextEntry={secure} disabled={disabled} keyboardType={type} onChangeText={input.onChange} {...input} />
+        <Input
+          secureTextEntry={secure}
+          disabled={disabled}
+          keyboardType={type}
+          onChangeText={input.onChange} {...input}
+          style={{borderColor: '#6198D8'}}
+        />
         { hasError && <Icon name='close-circle' /> }
       </Item>
       { hasError && <Text style={{ marginLeft: 2, marginTop: 5, fontSize: 15, color: 'red' }}>{error}</Text> }

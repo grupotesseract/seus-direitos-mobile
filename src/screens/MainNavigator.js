@@ -1,10 +1,8 @@
 import { StackNavigator } from 'react-navigation'
-import GuestIndex from './guest/Index'
-import GuestRegister from './guest/Register'
+import GuestNavigator from './guest/GuestNavigator'
 import AuthNavigator from './auth/AuthNavigator'
 
 export default StackNavigator({
-  GuestIndex: { screen: GuestIndex },
-  GuestRegister: { screen: GuestRegister },
+  Guest: { screen: GuestNavigator },
   Auth: { screen: AuthNavigator },
-})
+}, { headerMode: 'none' })

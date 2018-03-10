@@ -4,8 +4,7 @@ import {Text} from 'native-base'
 
 const styles = StyleSheet.create({
   img: {
-    width: 150,
-    height: 100,
+    width: '100%',
     resizeMode: Image.resizeMode.contain,
     marginBottom: 16
   },
@@ -18,19 +17,10 @@ const styles = StyleSheet.create({
   }
 })
 
-export default function ({ noMargin = false, noTitle = false }) {
+export default function ({ noMargin = false }) {
   return (
     <View style={[styles.container, !noMargin && styles.margin]}>
-      <Image source={require('../../assets/icons/seus-direitos.png')} style={styles.img} />
-      { !noTitle &&
-        <Text
-          uppercase
-          color="#404040"
-          style={{ fontFamily: 'roboto-medium', fontSize: 30 }}
-        >
-          SEUS DIREITOS
-        </Text>
-      }
+      <Image source={require('../../assets/icons/seu-sindicato.png')} style={styles.img} />
     </View>
   )
 }

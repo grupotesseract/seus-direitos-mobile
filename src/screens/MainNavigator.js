@@ -1,8 +1,11 @@
 import { StackNavigator } from 'react-navigation'
 import GuestNavigator from './guest/GuestNavigator'
-import AuthNavigator from './auth/AuthNavigator'
+import MemberNavigator from './member/MemberNavigator'
 
-export default StackNavigator({
-  Guest: { screen: GuestNavigator },
-  Auth: { screen: AuthNavigator },
-}, { headerMode: 'none' })
+export default ({ loggedIn = false }) => StackNavigator({
+  GuestNavigator: { screen: GuestNavigator },
+  MemberNavigator: { screen: MemberNavigator },
+}, {
+  headerMode: 'none',
+  initialRouteName : loggedIn ? 'MemberNavigator' : 'GuestNavigator'
+})

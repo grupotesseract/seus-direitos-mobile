@@ -1,13 +1,13 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import { StyleSheet, View } from 'react-native'
 import SeuSindicato from '../../components/seu-sindicato'
-import Video from '../../components/video'
 import MainView from '../../components/main'
 import LoginForm from '../../components/login-form'
-import { Container, Content, Button, Text } from 'native-base'
-import {validateCredentials} from '../../api/auth'
-import {AUTH_FAILED} from '../../actions/types'
+import { Button, Text } from 'native-base'
+import {login} from '../../thunks/auth'
 import {WebBrowser} from 'expo'
+import { withNavigation } from 'react-navigation'
 
 const styles = StyleSheet.create({
   mt: {
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   consultarClt: {
     fontSize: 16,
     fontFamily: 'roboto-medium',
-    marginVertical: 16,
+    marginVertical: 24,
     textAlign: 'center',
     color: '#6198D8'
   },
@@ -37,51 +37,21 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#D86161'
   },
-  errorBox: {
-    marginTop: 10,
-    marginBottom: 10,
-    backgroundColor: '#f8d7da',
-    borderColor: '#f5c6cb',
-    borderWidth: 1,
-    borderRadius: 2,
-    paddingHorizontal: 20,
-    paddingVertical: 12
-  },
   register: {
     flexDirection: 'row',
     height: 50,
     justifyContent: 'center',
     marginTop: 10
   },
-  errorText: {
-    color: '#721C2A',
-  }
 })
 
-class guestIndex extends React.Component {
-  state = {
-    error: null
-  }
-
-  handleSubmit = (values, dispatch) => {
-    return validateCredentials(values)
-      .then(res => {
-        if (!res.data.success) {
-          throw new Error()
-        }
-
-        return this.props.navigation.navigate('Auth')
-      })
-      .catch(err => {
-        dispatch({ type: AUTH_FAILED })
-        return this.setState({ error: "E-mail e/ou Senha inválido(s)." })
-      })
-  }
-
+class GuestLogin extends React.Component {
+  handleSubmit = (values) => this.props.login(values, this.props.navigation)
+  handleGoToVideos = () => this.props.navigation.navigate('GuestVideos')
   handleRegister = () => this.props.navigation.navigate('GuestRegister')
+  handleClickClt = () => WebBrowser.openBrowserAsync('https://www.empregasaopaulo.sp.gov.br/IMO/aprendiz/pdf/CLT%20-%20Consolidacao%20das%20Leis%20Trabalhistas.pdf')
 
   render () {
-    const {error} = this.state
     return (
       <MainView extraScroll={5}>
         <View style={styles.bordered}>
@@ -91,29 +61,25 @@ class guestIndex extends React.Component {
             <View style={styles.register}>
               <Text style={{ alignSelf: 'center' }}>Não possui uma conta?</Text>
               <Button transparent style={{ width: 100, alignSelf: 'center' }} onPress={this.handleRegister}>
-                <Text style={{ color: '#020F50', paddingLeft: 5, paddingRight: 0 }}>Cadastre-se!</Text>
+                <Text style={{ fontFamily: 'roboto-medium', color: '#020F50', paddingLeft: 5, paddingRight: 0 }}>Cadastre-se!</Text>
               </Button>
             </View>
-            { !!error &&
-              <View style={styles.errorBox}>
-                <Text style={styles.errorText}>{error}</Text>
-              </View>
-            }
           </View>
 
-          <LoginForm  onSubmit={this.handleSubmit} onChange={() => this.setState({ error: null })} />
+          <LoginForm onSubmit={this.handleSubmit} />
         </View>
 
         <View style={[styles.paddingH, styles.mb]}>
           <Text
             style={styles.verVideos}
+            onPress={this.handleGoToVideos}
           >
             VER TODOS OS VIDEOS
           </Text>
 
           <Text
             style={styles.consultarClt}
-            onPress={() => WebBrowser.openBrowserAsync('https://www.empregasaopaulo.sp.gov.br/IMO/aprendiz/pdf/CLT%20-%20Consolidacao%20das%20Leis%20Trabalhistas.pdf')}
+            onPress={this.handleClickClt}
           >
             CONSULTAR CLT
           </Text>
@@ -123,8 +89,8 @@ class guestIndex extends React.Component {
   }
 }
 
-guestIndex.navigationOptions = {
+GuestLogin.navigationOptions = {
   header: null,
 }
 
-export default guestIndex
+export default connect(null, {login})(withNavigation(GuestLogin))

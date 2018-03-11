@@ -12,14 +12,16 @@ export default function ({ input,
 
   return (
     <View style={{ marginVertical: 10 }}>
-      <Item error={hasError} floatingLabel style={{ flexDirection: 'row-reverse' }}>
+      <Item error={hasError} floatingLabel style={{ flexDirection: 'row-reverse', borderColor: 'black' }}>
         <Label>{label}</Label>
         <Input
           secureTextEntry={secure}
           disabled={disabled}
           keyboardType={type}
-          onChangeText={input.onChange} {...input}
-          style={{borderColor: '#6198D8'}}
+          onChangeText={input.onChange}
+          underlineColorAndroid="rgba(0,0,0,0)"
+          style={{color: '#8E8E93' }}
+          {...input}
         />
         { hasError && <Icon name='close-circle' /> }
       </Item>

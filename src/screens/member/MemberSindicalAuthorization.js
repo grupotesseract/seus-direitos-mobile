@@ -5,7 +5,7 @@ import { Container, Content, View, Button, Text, Toast, Icon } from 'native-base
 
 const styles = StyleSheet.create({
   mt: {
-    marginVertical: 10
+    marginVertical: 8
   },
   paddingH: {
     paddingHorizontal: 16
@@ -29,10 +29,14 @@ const styles = StyleSheet.create({
   item: {
     flexDirection: 'row',
     alignItems: 'center'
+  },
+  btn: {
+    backgroundColor: '#020F50',
+    marginVertical: 8
   }
 })
 
-function AuthSindicalAuthorization (props) {
+function MemberSindicalAuthorization (props) {
   const handlePress = () => {
     props.navigation.goBack()
     Toast.show({
@@ -68,7 +72,7 @@ function AuthSindicalAuthorization (props) {
           full
           primary
           onPress={handlePress}
-          style={styles.mt}
+          style={styles.btn}
         >
           <Text uppercase style={styles.white}>AUTORIZAR CONTRIBUIÇÃO</Text>
         </Button>
@@ -77,7 +81,7 @@ function AuthSindicalAuthorization (props) {
   )
 }
 
-AuthSindicalAuthorization.navigationOptions = {
+MemberSindicalAuthorization.navigationOptions = {
   headerMode: 'screen',
   title: 'Por quê contribuir?',
   headerStyle: {
@@ -89,4 +93,4 @@ AuthSindicalAuthorization.navigationOptions = {
   headerTintColor: 'white',
 }
 
-export default AuthSindicalAuthorization
+export default MemberSindicalAuthorization

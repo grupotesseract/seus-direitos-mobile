@@ -1,15 +1,14 @@
 import React from 'react'
 import { Font } from 'expo'
 import { Provider } from 'react-redux'
-import {StatusBar, View, StyleSheet} from 'react-native'
+import {StatusBar, View, StyleSheet, Text} from 'react-native'
 import createStore from './src/utils/store'
 import MainNavigator from './src/screens/MainNavigator'
 import {STATUS_BAR_HEIGHT} from './src/utils/constants'
 import getTheme from './native-base-theme/components'
 import material from './native-base-theme/variables/material'
-import { StyleProvider, Root } from 'native-base';
-
-const store = createStore()
+import { StyleProvider, Root } from 'native-base'
+import {getCurrentUser} from "./src/api/auth"
 
 const styles = StyleSheet.create({
   statusBar: {
@@ -25,34 +24,53 @@ const CustomStatusBar = ({backgroundColor, ...props}) => (
 
 export default class App extends React.Component {
   state = {
-    loaded: false
+    loaded: false,
+    error: null,
+    currentUser: null
   }
 
-  async componentWillMount() {
+  async componentWillMount () {
     await Font.loadAsync({
       'roboto': require('./assets/fonts/Roboto.ttf'),
       'roboto-medium': require('./assets/fonts/Roboto_medium.ttf'),
       'roboto-mono-bold': require('./assets/fonts/Roboto_Mono_Bold.ttf'),
     })
 
-    this.setState({ loaded: true });
+    const response = await getCurrentUser()
+    const currentUser = {
+      success: true,
+      name: 'teste@teste.com',
+      accepted: true,
+      access_token: 'ba@m234iom5io3m234234asd25ymio4ym'
+    }
+
+    this.setState({
+      // currentUser: response.data ? response.data : null,
+      currentUser,
+      loaded: true,
+    })
   }
 
   render () {
-    const {loaded} = this.state
+    const {loaded, currentUser} = this.state
 
     if (!loaded) return null
+
+    const store = createStore({
+      auth: { current: currentUser }
+    })
+
+    const RenderedMainNavigator = MainNavigator({ loggedIn: Boolean(currentUser) })
 
     return (
       <Provider store={store}>
         <StyleProvider style={getTheme(material)}>
           <Root>
-            <CustomStatusBar barStyle="light-content" backgroundColor="#3F51B5" translucent  />
-            <MainNavigator />
+            <CustomStatusBar barStyle="light-content" backgroundColor="#3F51B5" translucent />
+            <RenderedMainNavigator />
           </Root>
         </StyleProvider>
       </Provider>
     )
   }
 }
-

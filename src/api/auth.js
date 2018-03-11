@@ -8,6 +8,8 @@ export const validateCredentials = (credentials) => {
 
 export const createUser = (data) => {
   return axios().post('register', data)
+    .then(res => res.data)
+    .catch(err => err.response.data)
 }
 
 export const getCurrentUser = () => {

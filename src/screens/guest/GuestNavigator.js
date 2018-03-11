@@ -10,5 +10,5 @@ export default StackNavigator({
   GuestWizardNext: { screen: GuestWizardNext },
   GuestLogin: { screen: GuestLogin },
   GuestRegister: { screen: GuestRegister },
-  // GuestVideos: { screen: GuestVideos },
+  GuestVideos: { screen: GuestVideos },
 })

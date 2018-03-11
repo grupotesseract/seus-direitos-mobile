@@ -1,7 +1,7 @@
 import React from 'react'
-import { Font } from 'expo'
+import { Font, AppLoading} from 'expo'
 import { Provider } from 'react-redux'
-import {StatusBar, View, StyleSheet, Text} from 'react-native'
+import {StatusBar, View, StyleSheet} from 'react-native'
 import createStore from './src/utils/store'
 import MainNavigator from './src/screens/MainNavigator'
 import {STATUS_BAR_HEIGHT} from './src/utils/constants'
@@ -24,7 +24,7 @@ const CustomStatusBar = ({backgroundColor, ...props}) => (
 
 export default class App extends React.Component {
   state = {
-    loaded: false,
+    isReady: false,
     error: null,
     currentUser: null
   }
@@ -44,19 +44,20 @@ export default class App extends React.Component {
       access_token: 'ba@m234iom5io3m234234asd25ymio4ym'
     }
 
-    this.setState({
+    return this.setState({
       // currentUser: response.data ? response.data : null,
-      currentUser,
-      loaded: true,
+      currentUser: null,
+      // currentUser,
+      isReady: true,
     })
   }
 
   render () {
-    const {loaded, currentUser} = this.state
+    const {isReady, currentUser} = this.state
 
-    if (!loaded) return null
+    if (!isReady) return <AppLoading />
 
-    const store = createStore({
+    const store = !currentUser ? createStore() : createStore({
       auth: { current: currentUser }
     })
 

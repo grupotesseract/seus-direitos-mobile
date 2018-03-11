@@ -1,11 +1,11 @@
 import React from 'react'
-import SeusDireitos from '../../components/seus-direitos'
+import {connect} from 'react-redux'
+import SeuSindicato from '../../components/seu-sindicato'
 import MainView from '../../components/main'
-import {createUser} from '../../api/auth'
 import RegisterForm from '../../components/register-form'
 import {getSindicates} from '../../api/selects'
-import {SubmissionError} from 'redux-form'
 import {Toast} from 'native-base'
+import {register} from "../../thunks/auth"
 
 class GuestRegister extends React.Component {
   state = {
@@ -21,32 +21,16 @@ class GuestRegister extends React.Component {
     })
   }
 
-  handleSubmit = values => {
-
-    const data = {
-      ...values,
-      sindicato_id: values.sindicate.id,
-      cidade_id: values.sindicate.cities.length === 1 ? values.sindicate.cities[0].id : values.city.id
-    }
-
-    return createUser(data)
-      .then(res => {
-        if (!res.data.success) {
-          throw new Error("error!")
-        }
-
-        this.props.navigation.navigate('Auth')
-        Toast.show({
-          text: 'Sua conta foi criada com sucesso! Seja bem-vindo aos Seus Direitos!',
-          buttonText: 'Fechar',
-          position: 'top',
-          type: 'success',
-          duration: 4000
-        })
-      })
-      .catch(err => {
-        throw new SubmissionError({ email: "Este e-mail já está cadastrado." })
-      })
+  handleSubmit = values => this.props.register(values)
+  handleSubmitSucceded = () => {
+    this.props.navigation.navigate('Auth')
+    Toast.show({
+      text: 'Sua conta foi criada com sucesso! Seja bem-vindo aos Seu Sindicato!',
+      buttonText: 'Fechar',
+      position: 'top',
+      type: 'success',
+      duration: 4000
+    })
   }
 
   render () {
@@ -54,8 +38,12 @@ class GuestRegister extends React.Component {
 
     return (
       <MainView padder extraScroll={85}>
-        <SeusDireitos noTitle />
-        <RegisterForm onSubmit={this.handleSubmit} sindicates={sindicates} />
+        <SeuSindicato />
+        <RegisterForm
+          sindicates={sindicates}
+          onSubmit={this.handleSubmit}
+          onSubmitSucceded={this.handleSubmitSucceded}
+        />
       </MainView>
     )
   }
@@ -73,4 +61,4 @@ GuestRegister.navigationOptions = {
   headerTintColor: 'white',
 }
 
-export default GuestRegister
+export default connect(null, {register})(GuestRegister)

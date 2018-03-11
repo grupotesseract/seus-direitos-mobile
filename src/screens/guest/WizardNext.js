@@ -14,7 +14,7 @@ class Wizard extends React.Component {
   }
 
   handleGoToVideos () {
-    return this.props.navigation.navigate('GuestWizardNext')
+    return this.props.navigation.navigate('GuestVideos')
   }
 
   handleGoToLogin () {

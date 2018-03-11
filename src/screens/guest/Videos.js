@@ -60,7 +60,7 @@ class Videos extends React.Component {
           numColumns={width > 480 ? 2 : 1}
           renderItem={this.renderItem}
           onEndReached={this.requestMoreItems}
-          onEndReachedThreshold={0}
+          onEndReachedThreshold={0.1}
           extraData={this.state}
         />
       </View>

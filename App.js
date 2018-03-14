@@ -9,6 +9,7 @@ import getTheme from './native-base-theme/components'
 import material from './native-base-theme/variables/material'
 import { StyleProvider, Root } from 'native-base'
 import {getCurrentUser} from "./src/api/auth"
+import {getFeaturedVideo} from "./src/api/video";
 
 const styles = StyleSheet.create({
   statusBar: {
@@ -26,39 +27,43 @@ export default class App extends React.Component {
   state = {
     isReady: false,
     error: null,
-    currentUser: null
+    currentUser: null,
+    featuredVideo: null,
   }
 
-  async componentWillMount () {
+  async componentDidMount () {
     await Font.loadAsync({
       'roboto': require('./assets/fonts/Roboto.ttf'),
       'roboto-medium': require('./assets/fonts/Roboto_medium.ttf'),
       'roboto-mono-bold': require('./assets/fonts/Roboto_Mono_Bold.ttf'),
     })
 
-    const response = await getCurrentUser()
-    const currentUser = {
-      success: true,
-      name: 'teste@teste.com',
-      accepted: true,
-      access_token: 'ba@m234iom5io3m234234asd25ymio4ym'
-    }
+    const userResponse = await getCurrentUser()
+    const videoResponse = await getFeaturedVideo()
 
     return this.setState({
-      // currentUser: response.data ? response.data : null,
-      currentUser: null,
-      // currentUser,
+      currentUser: userResponse.data ? userResponse.data[0] : null,
+      featuredVideo: videoResponse.data ? videoResponse.data[0] : null,
       isReady: true,
     })
   }
 
   render () {
-    const {isReady, currentUser} = this.state
+    const {isReady, currentUser, featuredVideo} = this.state
 
     if (!isReady) return <AppLoading />
 
-    const store = !currentUser ? createStore() : createStore({
-      auth: { current: currentUser }
+    const store = createStore({
+      auth: { current: currentUser },
+      video: {
+        list: {
+          data: [],
+          fetching: false,
+          error: null,
+          hasMore: true,
+        },
+        featured: featuredVideo
+      }
     })
 
     const RenderedMainNavigator = MainNavigator({ loggedIn: Boolean(currentUser) })

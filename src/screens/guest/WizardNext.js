@@ -1,4 +1,5 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import { StyleSheet, View, WebView } from 'react-native'
 import { Content, Container, Button, Text, H2 } from 'native-base'
 import Title from '../../components/title'
@@ -26,11 +27,12 @@ class Wizard extends React.Component {
   }
 
   render () {
+    const {featuredVideo} = this.props
 
     return (
       <Container>
         <Content contentContainerStyle={{ flex: 1 }}>
-          <WebView source={{ uri: "https://www.youtube.com/embed/RJa4kG1N3d0" }} />
+          { Boolean(featuredVideo) && <WebView source={{ uri: "https://www.youtube.com/embed/" + featuredVideo.youtube_id }} /> }
           <View style={{alignItems: 'center', padding: 24, flex: 1, flexDirection: 'column', justifyContent: 'space-around', backgroundColor: '#fafafa', width: '100%' }}>
             <View>
               <Text style={{ fontSize: 18, textAlign: 'center', marginBottom: 8, color: '#95989A' }}>
@@ -77,4 +79,10 @@ Wizard.navigationOptions = {
   header: null
 }
 
-export default Wizard
+function mapStateToProps(state) {
+  return {
+    featuredVideo: state.video.featured
+  }
+}
+
+export default connect(mapStateToProps)(Wizard)

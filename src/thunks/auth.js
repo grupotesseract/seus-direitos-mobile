@@ -1,27 +1,30 @@
 import {fetchAuthLogin, errorAuthLogin} from '../actions/auth'
 import storage from '../utils/storage'
-import {createUser, validateCredentials} from '../api/auth'
+import {createUser, getCurrentUser, validateCredentials} from '../api/auth'
 import {SubmissionError} from 'redux-form'
+import _get from 'lodash/get'
 
-export const login = (data, nav) => async dispatch => {
-  // const response = await validateCredentials(data)
-  const response = {
-    data: {
-      success: true,
-      name: data.email,
-      accepted: true,
-      access_token: 'ba@m234iom5io3m234234asd25ymio4ym'
-    }
-  }
+export const login = (credentials, nav) => async dispatch => {
+  const response = await validateCredentials(credentials)
 
-  if (!response.success) {
+  const token = _get(response, 'success.token', null)
+  if (!token) {
     dispatch(errorAuthLogin())
     throw new SubmissionError('Erro: Credenciais de acesso inválidas.')
   }
 
-  await storage.save('access_token', response.access_token)
+  await storage.save('access_token', token)
 
-  dispatch(fetchAuthLogin(response))
+  const userResponse = await getCurrentUser()
+
+  if (!userResponse) {
+    await storage.delete('access_token')
+    dispatch(errorAuthLogin())
+    throw new SubmissionError('Erro: Credenciais de acesso inválidas.')
+  }
+
+
+  dispatch(fetchAuthLogin(userResponse))
 
   dispatch(nav.navigate('MemberIndex'))
 }
@@ -43,7 +46,7 @@ export const register = (values) => async dispatch => {
   const response = await createUser(data)
 
   if (!response.success) {
-    throw new SubmissionError('Erro ao criar conta')
+    throw new SubmissionError('Erro: Houve um problema inesperado ao criar conta.')
   }
 
   await storage.save('access_token', response.access_token)

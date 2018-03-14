@@ -11,7 +11,7 @@ class Videos extends React.Component {
     super(props)
 
     this.state = {
-      page: 1
+      page: 0
     }
 
     this.requestMoreItems = this.requestMoreItems.bind(this)
@@ -21,21 +21,22 @@ class Videos extends React.Component {
     return (
       <View style={{ flex: 1, flexDirection: 'column', borderBottomWidth: 1, borderBottomColor: '#eee' }}>
         <H3 style={{ fontFamily: 'roboto-medium', paddingVertical: 16, flex: 1, textAlign: 'center' }}>
-          {item.title}
+          {item.titulo}
         </H3>
-        <WebView style={{ height: 300 }} source={{ uri: item.url }} />
+        <WebView style={{ height: 300 }} source={{ uri: 'https://www.youtube.com/embed/' + item.youtube_id }} />
         <Text style={{ fontFamily: 'roboto', padding: 24, flex: 2, textAlign: 'center', color: '#777' }}>
-          {item.description}
+          {item.descricao}
           </Text>
       </View>
     )
   }
 
   requestMoreItems () {
-    if (!this.props.count || this.props.videos.length <= this.props.count) {
+    if (this.props.hasMore) {
+      this.props.requestVideos(this.state.page)
       this.setState({
-        page: this.state.page++
-      }, () => this.props.requestVideos({ page: this.state.page++ }))
+        page: this.state.page + 1
+      })
     }
   }
 
@@ -44,13 +45,14 @@ class Videos extends React.Component {
   }
 
   getKey (item) {
-    return item.id
+    return 'video-' + item.id
   }
 
   render () {
     const {videos, error} = this.props
 
     if (error) return this.renderError()
+
     return (
       <View style={{ flex: 1, backgroundColor: 'white' }}>
         <FlatList
@@ -60,7 +62,7 @@ class Videos extends React.Component {
           numColumns={width > 480 ? 2 : 1}
           renderItem={this.renderItem}
           onEndReached={this.requestMoreItems}
-          onEndReachedThreshold={0.1}
+          onEndReachedThreshold={0}
           extraData={this.state}
         />
       </View>
@@ -85,7 +87,7 @@ function mapStateToProps (state) {
     videos: state.video.list.data,
     fetching: state.video.list.fetching,
     error: state.video.list.error,
-    count: state.video.list.count,
+    hasMore: state.video.list.hasMore,
   }
 }
 

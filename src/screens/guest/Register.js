@@ -9,7 +9,6 @@ import {register} from "../../thunks/auth"
 
 class GuestRegister extends React.Component {
   state = {
-    cities: [],
     sindicates: [],
   }
 

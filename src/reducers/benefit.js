@@ -1,7 +1,7 @@
 import {
-  VIDEOS_REQUEST_FULFILLED,
-  VIDEOS_REQUEST_PENDING,
-  VIDEOS_REQUEST_REJECTED,
+  SINDICATE_BENEFITS_REQUEST_FULFILLED,
+  SINDICATE_BENEFITS_REQUEST_PENDING,
+  SINDICATE_BENEFITS_REQUEST_REJECTED,
 } from '../actions/types'
 
 const INITIAL_STATE = {
@@ -9,14 +9,12 @@ const INITIAL_STATE = {
     data: [],
     fetching: false,
     error: null,
-    hasMore: true,
   },
-  featured: null,
 }
 
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case VIDEOS_REQUEST_PENDING: {
+    case SINDICATE_BENEFITS_REQUEST_PENDING: {
       return {
         ...state,
         list: {
@@ -26,7 +24,7 @@ export default function(state = INITIAL_STATE, action) {
         }
       }
     }
-    case VIDEOS_REQUEST_REJECTED: {
+    case SINDICATE_BENEFITS_REQUEST_REJECTED: {
       return {
         ...state,
         list: {
@@ -34,21 +32,17 @@ export default function(state = INITIAL_STATE, action) {
           data: [],
           fetching: false,
           error: action.payload,
-          hasMore: true,
         }
       }
     }
-    case VIDEOS_REQUEST_FULFILLED: {
+    case SINDICATE_BENEFITS_REQUEST_FULFILLED: {
       return {
         ...state,
         list: {
-          data: [
-            ...state.list.data,
-            ...action.payload.data,
-          ],
+          ...state.list,
+          data: action.payload,
           fetching: false,
           error: null,
-          hasMore: action.payload.hasMore,
         }
       }
     }

@@ -19,21 +19,5 @@ export default function () {
     return config
   })
 
-  // instance.interceptors.response.use(async function (response) {
-  //   const newAccessToken = _get(response, 'headers.authorization')
-  //   if (newAccessToken) {
-  //     await storage.save('access_token', newAccessToken)
-  //   }
-  //
-  //   return response
-  // }, function (error) {
-  //   if (error.response && error.response.status === 401) {
-  //     storage.delete('access_token')
-  //   }
-  //
-  //   console.log('REQUEST error', error);
-  //   return Promise.reject(error)
-  // })
-
   return instance
 }

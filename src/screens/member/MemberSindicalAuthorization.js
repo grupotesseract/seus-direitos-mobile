@@ -1,7 +1,9 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import { StyleSheet, Platform } from 'react-native'
 import MainView from '../../components/main'
 import { Container, Content, View, Button, Text, Toast, Icon } from 'native-base';
+import {requestSindicateBenefits, toggleContribution} from "../../thunks/benefit";
 
 const styles = StyleSheet.create({
   mt: {
@@ -36,11 +38,22 @@ const styles = StyleSheet.create({
   }
 })
 
-function MemberSindicalAuthorization (props) {
-  const handlePress = () => {
-    props.navigation.goBack()
+class MemberSindicalAuthorization extends React.Component {
+  componentDidMount () {
+    this.props.requestSindicateBenefits(this.props.sindicateId)
+  }
+
+  handlePress = () => {
+    const {toggleContribution, navigation, authorized} = this.props
+
+    toggleContribution(authorized)
+    navigation.goBack()
+
+    const text = authorized ?
+      'Cancelamento da contribuição realizado com sucesso!' : 'Aceite da contribuição realizado com sucesso!'
+
     Toast.show({
-      text: 'Contribuição Autorizada com sucesso!',
+      text,
       buttonText: 'Fechar',
       position: 'top',
       type: 'success',
@@ -48,37 +61,46 @@ function MemberSindicalAuthorization (props) {
     })
   }
 
-  return (
-    <MainView>
-      <Content style={[styles.paddingH, styles.mt]}>
-        <View style={styles.item}>
-          <Icon ios='ios-checkmark' android="md-checkmark" style={styles.icon} />
-          <Text style={styles.font}>Seu reajuste salarial</Text>
-        </View>
-        <View style={styles.item}>
-          <Icon ios='ios-checkmark' android="md-checkmark" style={styles.icon} />
-          <Text style={styles.font}>Sua bolsa de estudos</Text>
-        </View>
-        <View style={styles.item}>
-          <Icon ios='ios-checkmark' android="md-checkmark" style={styles.icon} />
-          <Text style={styles.font} allowFontScaling={false}>Gratuidade na mensalidade de seus filhos</Text>
-        </View>
-        <View style={styles.item}>
-          <Icon ios='ios-checkmark' android="md-checkmark" style={styles.icon} />
-          <Text style={styles.font}>Manutenção do seu plano de saúde</Text>
-        </View>
+  renderBenefits (benefits) {
+    return benefits.map((benefit, key) => {
+      return <View style={styles.item} key={'benefit-id-'+ key}>
+        <Icon ios='ios-checkmark' android="md-checkmark" style={styles.icon}/>
+        <Text style={styles.font}>{benefit.name}</Text>
+      </View>
+    })
+  }
 
-        <Button
-          full
-          primary
-          onPress={handlePress}
-          style={styles.btn}
-        >
-          <Text uppercase style={styles.white}>AUTORIZAR CONTRIBUIÇÃO</Text>
-        </Button>
-      </Content>
-    </MainView>
-  )
+  render () {
+    const {benefits, fetching, error, authorized} = this.props
+
+    if (fetching || error) {
+      return (
+        <View style={{ flex: 1, alignItems: 'center', height: '100%', justifyContent: 'center' }}>
+          <Text>Carregando...</Text>
+        </View>
+      )
+    }
+
+    const renderedBenefits = this.renderBenefits(benefits)
+
+    return (
+      <MainView>
+        <Content style={[styles.paddingH, styles.mt]}>
+          {renderedBenefits}
+          <Button
+            full
+            primary
+            onPress={this.handlePress}
+            style={styles.btn}
+          >
+            <Text uppercase style={styles.white}>
+              { !authorized ? 'AUTORIZAR CONTRIBUIÇÃO' : 'DESAUTORIZAR CONTRIBUIÇÃO' }
+              </Text>
+          </Button>
+        </Content>
+      </MainView>
+    )
+  }
 }
 
 MemberSindicalAuthorization.navigationOptions = {
@@ -93,4 +115,14 @@ MemberSindicalAuthorization.navigationOptions = {
   headerTintColor: 'white',
 }
 
-export default MemberSindicalAuthorization
+function mapStateToProps(state) {
+  return {
+    authorized: state.auth.current.aceitou_contribuicao,
+    sindicateId: state.auth.current.sindicato_id,
+    benefits: state.benefit.list.data,
+    fetching: state.benefit.list.fetching,
+    error: state.benefit.list.error,
+  }
+}
+
+export default connect(mapStateToProps, {requestSindicateBenefits, toggleContribution})(MemberSindicalAuthorization)

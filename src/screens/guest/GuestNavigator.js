@@ -6,9 +6,9 @@ import GuestRegister from './Register'
 import GuestVideos from './Videos'
 
 export default StackNavigator({
-  GuestLogin: { screen: GuestLogin },
   GuestWizard: { screen: GuestWizard },
   GuestWizardNext: { screen: GuestWizardNext },
+  GuestLogin: { screen: GuestLogin },
   GuestRegister: { screen: GuestRegister },
   GuestVideos: { screen: GuestVideos },
 })

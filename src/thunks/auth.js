@@ -1,32 +1,21 @@
 import {fetchAuthLogin, errorAuthLogin} from '../actions/auth'
 import storage from '../utils/storage'
-import {createUser, getCurrentUser, validateCredentials} from '../api/auth'
+import {createUser, validateCredentials} from '../api/auth'
 import {SubmissionError} from 'redux-form'
 import _get from 'lodash/get'
 
-export const login = (credentials, nav) => async dispatch => {
+export const login = (credentials) => async dispatch => {
   const response = await validateCredentials(credentials)
 
   const token = _get(response, 'success.token', null)
-  if (!token) {
+  if (!token || response.error) {
     dispatch(errorAuthLogin())
-    throw new SubmissionError('Erro: Credenciais de acesso inválidas.')
+    throw new SubmissionError({ _error: 'Erro: Credenciais de acesso inválidas.' })
   }
 
   await storage.save('access_token', token)
 
-  const userResponse = await getCurrentUser()
-
-  if (!userResponse) {
-    await storage.delete('access_token')
-    dispatch(errorAuthLogin())
-    throw new SubmissionError('Erro: Credenciais de acesso inválidas.')
-  }
-
-
-  dispatch(fetchAuthLogin(userResponse))
-
-  dispatch(nav.navigate('MemberIndex'))
+  return dispatch(fetchAuthLogin(response.data))
 }
 
 export const logout = (nav) => async dispatch => {
@@ -39,16 +28,17 @@ export const logout = (nav) => async dispatch => {
 export const register = (values) => async dispatch => {
   const data = {
     ...values,
+    aceitou_contribuicao: false,
     sindicato_id: values.sindicate.id,
     cidade_id: values.sindicate.cities.length === 1 ? values.sindicate.cities[0].id : values.city.id
   }
 
   const response = await createUser(data)
 
-  if (!response.success) {
-    throw new SubmissionError('Erro: Houve um problema inesperado ao criar conta.')
+  if (response.error) {
+    throw new SubmissionError(response.error)
   }
 
-  await storage.save('access_token', response.access_token)
-  dispatch(fetchAuthLogin(response))
+  await storage.save('access_token', response.success.token)
+  dispatch(fetchAuthLogin(data))
 }

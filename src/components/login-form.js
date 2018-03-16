@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
 class LoginForm extends React.Component {
   render () {
     const {error, handleSubmit, submitting} = this.props
+    console.log(error)
     return (
       <View>
         { !!error &&

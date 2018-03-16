@@ -21,8 +21,8 @@ class GuestRegister extends React.Component {
   }
 
   handleSubmit = values => this.props.register(values)
-  handleSubmitSucceded = () => {
-    this.props.navigation.navigate('Auth')
+  handleSubmitSuccess = () => {
+    this.props.navigation.navigate('MemberIndex')
     Toast.show({
       text: 'Sua conta foi criada com sucesso! Seja bem-vindo aos Seu Sindicato!',
       buttonText: 'Fechar',
@@ -41,7 +41,7 @@ class GuestRegister extends React.Component {
         <RegisterForm
           sindicates={sindicates}
           onSubmit={this.handleSubmit}
-          onSubmitSucceded={this.handleSubmitSucceded}
+          onSubmitSuccess={this.handleSubmitSuccess}
         />
       </MainView>
     )

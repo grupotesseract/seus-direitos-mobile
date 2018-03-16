@@ -18,20 +18,16 @@ class Wizard extends React.Component {
   render () {
     return (
       <View style={{ flex: 1, backgroundColor: 'white',  alignItems: 'center', flexDirection: 'column' }}>
-        <View style={{ height: 200, margin: 50, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{ height: 180, alignItems: 'center', justifyContent: 'center' }}>
           <SeusDireitos />
         </View>
-        <View style={{alignItems: 'center', padding: 24, flex: 1, flexDirection: 'column', justifyContent: 'space-around', backgroundColor: '#fafafa', width: '100%' }}>
-          <View>
-            <Title type="header" text="SEJA BEM-VINDO(A)" />
-          </View>
-          <View>
-            <Text style={{ fontSize: 18, textAlign: 'center', color: '#95989A' }}>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Accusamus, autem consequuntur explicabo nihil nisi quisquam reiciendis saepe voluptatem!
-              Accusantium animi beatae debitis dicta dolorem eius, magnam maiores necessitatibus pariatur quae.
-            </Text>
-          </View>
+        <View style={{alignItems: 'center', padding: 24, flex: 1, flexDirection: 'column', justifyContent: 'space-between', backgroundColor: '#fafafa', width: '100%' }}>
+          <Title type="header" text="SEJA BEM-VINDO(A)" />
+          <Text style={{ fontSize: 18, textAlign: 'center', color: '#95989A' }}>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Accusamus, autem consequuntur explicabo nihil nisi quisquam reiciendis saepe voluptatem!
+            Accusantium animi beatae debitis dicta dolorem eius, magnam maiores necessitatibus pariatur quae.
+        </Text>
         </View>
         <Button block large onPress={this.handlePress}>
           <Text uppercase>próximo</Text>

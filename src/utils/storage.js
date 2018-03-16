@@ -1,4 +1,5 @@
 import {AsyncStorage} from 'react-native'
+import store from "./store";
 
 const storage = {
   save: async (key, jsonData) => {
@@ -7,7 +8,7 @@ const storage = {
     }
     catch (e) {
       //TODO Storage error treatment
-      console.warn('storage.save ERROR:', e)
+      console.error('storage.save ERROR:', e)
       return e
     }
   },
@@ -18,7 +19,7 @@ const storage = {
     }
     catch (e) {
       //TODO Storage error treatment
-      console.warn('storage.load ERROR:', e)
+      console.error('storage.load ERROR:', e)
       return e
     }
   },
@@ -29,7 +30,7 @@ const storage = {
     }
     catch (e) {
       //TODO Storage error treatment
-      console.warn('storage.delete ERROR:', e)
+      console.error('storage.delete ERROR:', e)
       return e
     }
   },
@@ -40,7 +41,7 @@ const storage = {
     }
     catch (e) {
       //TODO Storage error treatment
-      console.warn('storage.load ERROR:', e)
+      console.error('storage.load ERROR:', e)
       return e
     }
   }

@@ -33,36 +33,27 @@ class Wizard extends React.Component {
       <Container>
         <Content contentContainerStyle={{ flex: 1 }}>
           { Boolean(featuredVideo) && <WebView source={{ uri: "https://www.youtube.com/embed/" + featuredVideo.youtube_id }} /> }
-          <View style={{alignItems: 'center', padding: 24, flex: 1, flexDirection: 'column', justifyContent: 'space-around', backgroundColor: '#fafafa', width: '100%' }}>
-            <View>
-              <Text style={{ fontSize: 18, textAlign: 'center', marginBottom: 8, color: '#95989A' }}>
-                Para entender mais sobre nossa missão veja o vídeo de introdução acima.
-              </Text>
-            </View>
+          <View style={{alignItems: 'center', padding: 24, flex: 1, flexDirection: 'column', justifyContent: 'space-between', backgroundColor: '#fafafa', width: '100%' }}>
 
-            <View>
-              <Text style={{ fontSize: 18, textAlign: 'center', color: '#95989A' }}>
-                Para ver mais vídeos do Seus Direitos
-              </Text>
+            <Text style={{ fontSize: 18, textAlign: 'center', marginBottom: 8, color: '#95989A' }}>
+              Para entender mais sobre nossa missão veja o vídeo de introdução acima.
+            </Text>
+
+            <Text  style={{ fontSize: 18, textAlign: 'center', color: '#95989A' }}>
+              Para ver mais vídeos do Seus Direitos
               <Text
-                style={{ color: '#6198D8', fontFamily: 'roboto-medium', textAlign: 'center',  }}
+                style={{ color: '#6198D8', fontFamily: 'roboto-medium' }}
                 onPress={this.handleGoToVideos}
-              >
-                CLIQUE AQUI
-              </Text>
-            </View>
+              > CLIQUE AQUI </Text>
+            </Text>
 
-            <View>
-              <Text style={{ fontSize: 18, textAlign: 'center', color: '#95989A' }}>
-                Para saber mais sobre o Seu Sindicato
-              </Text>
+            <Text style={{ fontSize: 18, textAlign: 'center', color: '#95989A' }}>
+              Para saber mais sobre o Seu Sindicato
               <Text
-                style={{ color: '#6198D8', fontFamily: 'roboto-medium', textAlign: 'center',  }}
+                style={{ color: '#6198D8', fontFamily: 'roboto-medium' }}
                 onPress={this.handleGoToLogin}
-              >
-                CLIQUE AQUI
-              </Text>
-            </View>
+              > CLIQUE AQUI </Text>
+            </Text>
 
             <Text style={{ fontSize: 18, textAlign: 'center', marginBottom: 8, color: '#95989A' }}>
               Além de todo este material você também pode

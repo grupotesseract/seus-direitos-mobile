@@ -65,7 +65,7 @@ class MemberSindicalAuthorization extends React.Component {
     return benefits.map((benefit, key) => {
       return <View style={styles.item} key={'benefit-id-'+ key}>
         <Icon ios='ios-checkmark' android="md-checkmark" style={styles.icon}/>
-        <Text style={styles.font}>{benefit.name}</Text>
+        <Text style={styles.font}>{benefit.nome}</Text>
       </View>
     })
   }

@@ -17,7 +17,6 @@ const styles = StyleSheet.create({
     marginBottom: 16
   },
   bordered: {
-    padding: 16,
     margin: 16,
   },
   paddingH: {
@@ -48,7 +47,11 @@ const styles = StyleSheet.create({
 })
 
 class GuestLogin extends React.Component {
-  handleSubmit = (values) => this.props.login(values, this.props.navigation)
+  handleSubmit = (values) => this.props.login(values)
+  handleSubmitSuccess = (result, dispatch, props) => {
+    props.destroy()
+    this.props.navigation.navigate('MemberIndex')
+  }
   handleGoToVideos = () => this.props.navigation.navigate('GuestVideos')
   handleRegister = () => this.props.navigation.navigate('GuestRegister')
   handleClickClt = () => WebBrowser.openBrowserAsync('https://www.empregasaopaulo.sp.gov.br/IMO/aprendiz/pdf/CLT%20-%20Consolidacao%20das%20Leis%20Trabalhistas.pdf')
@@ -59,16 +62,17 @@ class GuestLogin extends React.Component {
         <View style={styles.bordered}>
           <SeuSindicato noMargin />
 
-          <View style={[styles.paddingH]}>
-            <View style={styles.register}>
-              <Text style={{ alignSelf: 'center' }}>Não possui uma conta?</Text>
-              <Button transparent style={{ width: 100, alignSelf: 'center' }} onPress={this.handleRegister}>
-                <Text style={{ fontFamily: 'roboto-medium', color: '#020F50', paddingLeft: 5, paddingRight: 0 }}>Cadastre-se!</Text>
-              </Button>
-            </View>
+          <View style={[styles.paddingH, styles.register]}>
+            <Text style={{ alignSelf: 'center' }}>Não possui uma conta?</Text>
+            <Button transparent style={{ width: 100, alignSelf: 'center' }} onPress={this.handleRegister}>
+              <Text style={{ fontFamily: 'roboto-medium', color: '#020F50', paddingLeft: 5, paddingRight: 0 }}>Cadastre-se!</Text>
+            </Button>
           </View>
 
-          <LoginForm onSubmit={this.handleSubmit} />
+          <LoginForm
+            onSubmit={this.handleSubmit}
+            onSubmitSuccess={this.handleSubmitSuccess}
+          />
         </View>
 
         <View style={[styles.paddingH, styles.mb]}>

@@ -1,7 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { StyleSheet, View, Image } from 'react-native'
-import Video from '../../components/video'
 import MainView from '../../components/main'
 import { Button, Text } from 'native-base';
 import hands from '../../../assets/icons/hands.png'
@@ -28,7 +27,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     marginVertical: 16,
     backgroundColor: '#020F50',
-    paddingVertical: 8
+    paddingVertical: 12
   }
 })
 
@@ -39,8 +38,6 @@ class MemberIndex extends React.Component {
   render () {
     return (
       <MainView>
-        <Video uri='http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'/>
-
         <View style={[styles.paddingH, styles.mt]}>
           <View style={{flex: 1 }}>
             <Button

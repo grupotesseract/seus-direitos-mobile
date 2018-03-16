@@ -13,6 +13,7 @@ export default function () {
 
   instance.interceptors.request.use(async function(config){
     const token = await storage.load('access_token')
+
     if(token){
       config.headers.common['Authorization'] = `Bearer ${token}`
     }

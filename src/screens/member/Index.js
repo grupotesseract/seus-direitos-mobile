@@ -1,8 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { StyleSheet, View, Image } from 'react-native'
+import { StyleSheet, View, Image, TouchableOpacity } from 'react-native'
 import MainView from '../../components/main'
-import { Button, Text } from 'native-base';
+import {Button, Text, Toast} from 'native-base';
 import hands from '../../../assets/icons/hands.png'
 import news from '../../../assets/icons/news.png'
 import talk from '../../../assets/icons/talk.png'
@@ -34,45 +34,51 @@ const styles = StyleSheet.create({
 class MemberIndex extends React.Component {
   handleLogout = () => this.props.logout(this.props.navigation)
   handleClickBenefits = () => this.props.navigation.navigate('MemberSindicalAuthorization')
+  handlePressFeatures = () => Toast.show({
+    text: 'Esta função será liberada em breve!',
+    duration: 4000
+  })
 
   render () {
     return (
       <MainView>
         <View style={[styles.paddingH, styles.mt]}>
-          <View style={{flex: 1 }}>
-            <Button
-              full
-              primary
-              onPress={this.handleClickBenefits}
-              style={styles.button}
-            >
-              <Text uppercase style={styles.white}>Não perca seus benefícios</Text>
-              <Text uppercase style={styles.white}>Saiba Mais</Text>
-            </Button>
-          </View>
+          <Button
+            full
+            primary
+            onPress={this.handleClickBenefits}
+            style={styles.button}
+          >
+            <Text uppercase style={styles.white}>Não perca seus direitos e benefícios - Clique aqui</Text>
+          </Button>
 
-          <View style={{flex: 1, flexDirection: 'row', marginTop: 16}}>
-            <View style={{flex: 1, borderColor: 'red', borderWidth: 1, borderTopLeftRadius: 8, alignItems: 'center'}}>
+          <View style={{ flexDirection: 'row', marginTop: 16}}>
+            <TouchableOpacity
+              onPress={this.handlePressFeatures}
+              style={{flex: 1, borderColor: 'red', borderWidth: 1, borderTopLeftRadius: 8, alignItems: 'center'}}>
               <Image source={news} style={{width: 140, height: 140, resizeMode: Image.resizeMode.contain}}/>
-            </View>
-            <View
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={this.handlePressFeatures}
               style={{flex: 1, borderColor: 'orange', borderWidth: 1, borderTopRightRadius: 8, alignItems: 'center'}}>
               <Image source={vacation} style={{width: 140, height: 140, resizeMode: Image.resizeMode.contain}}/>
-            </View>
+            </TouchableOpacity>
           </View>
           <View style={{flex: 1, flexDirection: 'row'}}>
-            <View
+            <TouchableOpacity
+              onPress={this.handlePressFeatures}
               style={{flex: 1, borderColor: 'purple', borderWidth: 1, borderBottomLeftRadius: 8, alignItems: 'center'}}>
               <Image source={talk} style={{width: 140, height: 140, resizeMode: Image.resizeMode.contain}}/>
-            </View>
-            <View
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={this.handlePressFeatures}
               style={{flex: 1, borderColor: 'green', borderWidth: 1, borderBottomRightRadius: 8, alignItems: 'center'}}>
               <Image source={hands} style={{width: 140, height: 140, resizeMode: Image.resizeMode.contain}}/>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
 
-        <View style={{ flex: 1, marginTop: 30 }}>
+        <View style={{ marginTop: 50 }}>
           <Button
             transparent
             block

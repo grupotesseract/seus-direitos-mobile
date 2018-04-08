@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     fontFamily: 'roboto-medium',
     marginVertical: 24,
     textAlign: 'center',
-    color: '#6198D8',
+    color: '#D86161',
     width: '100%'
   },
   verVideos: {
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     fontFamily: 'roboto-medium',
     marginVertical: 16,
     textAlign: 'center',
-    color: '#D86161',
+    color: 'white',
     width: '100%'
   },
   register: {
@@ -77,10 +77,9 @@ class GuestLogin extends React.Component {
 
         <View style={[styles.paddingH, styles.mb]}>
           <Button
-            transparent
             onPress={this.handleGoToVideos}
           >
-            <Text style={styles.verVideos}>VER TODOS OS VIDEOS</Text>
+            <Text style={styles.verVideos}>VOLTAR PARA SEUS DIREITOS</Text>
           </Button>
 
           <Button

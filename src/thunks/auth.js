@@ -22,7 +22,7 @@ export const logout = (nav) => async dispatch => {
   await storage.delete('access_token')
   dispatch(errorAuthLogin())
 
-  dispatch(nav.navigate('GuestLogin'))
+  return nav.navigate('GuestWizardNext')
 }
 
 export const register = (values) => async dispatch => {

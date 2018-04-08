@@ -19,6 +19,10 @@ class Wizard extends React.Component {
   }
 
   handleGoToLogin () {
+    if (this.props.user) {
+      return this.props.navigation.navigate('MemberIndex')
+    }
+
     return this.props.navigation.navigate('GuestLogin')
   }
 
@@ -72,7 +76,8 @@ Wizard.navigationOptions = {
 
 function mapStateToProps(state) {
   return {
-    featuredVideo: state.video.featured
+    featuredVideo: state.video.featured,
+    user: state.auth.current
   }
 }
 

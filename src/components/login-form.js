@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
 class LoginForm extends React.Component {
   render () {
     const {error, handleSubmit, submitting} = this.props
-    console.log(error)
+
     return (
       <View>
         { !!error &&
@@ -54,10 +54,6 @@ class LoginForm extends React.Component {
           component={TextInput}
           validate={required}
         />
-
-        <Text style={styles.forgotPass}>
-          Esqueceu sua senha?
-        </Text>
 
         <Button
           full

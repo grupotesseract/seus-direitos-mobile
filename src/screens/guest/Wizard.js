@@ -24,10 +24,8 @@ class Wizard extends React.Component {
         <View style={{alignItems: 'center', padding: 24, flex: 1, flexDirection: 'column', justifyContent: 'space-between', backgroundColor: '#fafafa', width: '100%' }}>
           <Title type="header" text="SEJA BEM-VINDO(A)" />
           <Text style={{ fontSize: 18, textAlign: 'center', color: '#95989A' }}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Accusamus, autem consequuntur explicabo nihil nisi quisquam reiciendis saepe voluptatem!
-            Accusantium animi beatae debitis dicta dolorem eius, magnam maiores necessitatibus pariatur quae.
-        </Text>
+		Somos uma empresa com a intenção de levar informações sobre leis, direitos, deveres e dia-a-dia de forma mais humana e acessível a sociedade.
+	   </Text>
         </View>
         <Button block large onPress={this.handlePress}>
           <Text uppercase>próximo</Text>

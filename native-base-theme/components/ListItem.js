@@ -5,6 +5,14 @@ import variable from "./../variables/platform";
 
 export default (variables = variable) => {
   const platform = variables.platform;
+  const selectedStyle = {
+    "NativeBase.Text": {
+      color: variables.brandPrimary
+    },
+    "NativeBase.Icon": {
+      color: variables.brandPrimary
+    }
+  };
 
   const listItemTheme = {
     "NativeBase.InputGroup": {
@@ -27,9 +35,10 @@ export default (variables = variable) => {
         "NativeBase.Icon": {
           backgroundColor: "transparent",
           color: variables.dropdownLinkColor,
-          fontSize: platform === "ios"
-            ? variables.iconFontSize - 10
-            : variables.iconFontSize - 5,
+          fontSize:
+            platform === "ios"
+              ? variables.iconFontSize - 10
+              : variables.iconFontSize - 5,
           alignItems: "center",
           marginTop: 2,
           paddingRight: 8
@@ -69,7 +78,7 @@ export default (variables = variable) => {
     },
     "NativeBase.CheckBox": {
       marginLeft: -10,
-      marginRight: 10,
+      marginRight: 10
     },
     ".first": {
       ".itemHeader": {
@@ -84,12 +93,10 @@ export default (variables = variable) => {
       marginLeft: null,
       padding: variables.listItemPadding,
       paddingLeft: variables.listItemPadding + 5,
-      paddingTop: platform === "ios"
-        ? variables.listItemPadding + 25
-        : undefined,
-      paddingBottom: platform === "android"
-        ? variables.listItemPadding + 20
-        : undefined,
+      paddingTop:
+        platform === "ios" ? variables.listItemPadding + 25 : undefined,
+      paddingBottom:
+        platform === "android" ? variables.listItemPadding + 20 : undefined,
       flexDirection: "row",
       borderColor: variables.listBorderColor,
       "NativeBase.Text": {
@@ -108,13 +115,15 @@ export default (variables = variable) => {
     },
     ".selected": {
       "NativeBase.Left": {
-        "NativeBase.Text": {
-          color: variables.brandPrimary
-        }
+        ...selectedStyle
       },
-      "NativeBase.Text": {
-        color: variables.brandPrimary
-      }
+      "NativeBase.Body": {
+        ...selectedStyle
+      },
+      "NativeBase.Right": {
+        ...selectedStyle
+      },
+      ...selectedStyle
     },
     "NativeBase.Left": {
       "NativeBase.Body": {
@@ -138,7 +147,6 @@ export default (variables = variable) => {
         fontSize: variables.iconFontSize - 10
       },
       "NativeBase.Text": {
-        marginLeft: 10,
         alignSelf: "center"
       },
       flexDirection: "row"
@@ -214,7 +222,7 @@ export default (variables = variable) => {
         color: variables.listNoteColor,
         fontWeight: "200"
       },
-      alignSelf: 'center'
+      alignSelf: "center"
     },
 
     ".last": {
@@ -395,9 +403,9 @@ export default (variables = variable) => {
     },
     alignItems: "center",
     flexDirection: "row",
-    paddingRight: variables.listItemPadding + 5,
+    paddingRight: variables.listItemPadding + 6,
     paddingVertical: variables.listItemPadding + 3,
-    marginLeft: variables.listItemPadding + 5,
+    marginLeft: variables.listItemPadding + 6,
     borderBottomWidth: 1 / PixelRatio.getPixelSizeForLayoutSize(1),
     backgroundColor: variables.listBg,
     borderColor: variables.listBorderColor

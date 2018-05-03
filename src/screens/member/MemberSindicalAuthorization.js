@@ -4,6 +4,7 @@ import { StyleSheet, Platform } from 'react-native'
 import MainView from '../../components/main'
 import { Container, Content, View, Button, Text, Toast, Icon } from 'native-base';
 import {requestSindicateBenefits, toggleContribution} from "../../thunks/benefit";
+import {STATUS_BAR_HEIGHT} from "../../utils/constants";
 
 const styles = StyleSheet.create({
   mt: {
@@ -107,6 +108,7 @@ MemberSindicalAuthorization.navigationOptions = {
   headerMode: 'screen',
   title: 'Por quê contribuir?',
   headerStyle: {
+    marginTop: -STATUS_BAR_HEIGHT,
     paddingTop: 0,
     paddingBottom: 0,
     backgroundColor: '#6198D8',

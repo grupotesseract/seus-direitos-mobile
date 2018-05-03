@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import { WebView, Dimensions, View, FlatList } from 'react-native'
 import { Text, H3 } from 'native-base'
 import {requestVideos} from "../../thunks/video"
+import {STATUS_BAR_HEIGHT} from "../../utils/constants";
 
 const {width} = Dimensions.get('window')
 
@@ -31,9 +32,13 @@ class Videos extends React.Component {
     )
   }
 
+  componentDidMount() {
+    this.props.requestVideos(this.state.page)
+  }
+
   requestMoreItems () {
     if (this.props.hasMore) {
-      this.props.requestVideos(this.state.page)
+      this.props.requestVideos(this.state.page + 1)
       this.setState({
         page: this.state.page + 1
       })
@@ -44,14 +49,19 @@ class Videos extends React.Component {
     return <H3 style={{ padding: 50, textAlign: 'center', color: 'red' }}>Erro ao ler a lista de videos.</H3>
   }
 
+  renderNoVideos () {
+    return <H3 style={{ padding: 24, textAlign: 'center' }}>Nenhum vídeo cadastrado.</H3>
+  }
+
   getKey (item) {
-    return 'video-' + item.id
+    return `video-${item.id}`
   }
 
   render () {
-    const {videos, error} = this.props
+    const {videos, hasMore, error} = this.props
 
     if (error) return this.renderError()
+    if (!hasMore && !videos.length) return this.renderNoVideos()
 
     return (
       <View style={{ flex: 1, backgroundColor: 'white' }}>
@@ -63,7 +73,7 @@ class Videos extends React.Component {
           renderItem={this.renderItem}
           onEndReached={this.requestMoreItems}
           onEndReachedThreshold={0}
-          extraData={this.state}
+          extraData={this.state.page}
         />
       </View>
     )
@@ -74,6 +84,7 @@ Videos.navigationOptions = {
   title: "Lista de Vídeos",
   headerMode: 'screen',
   headerStyle: {
+    marginTop: -STATUS_BAR_HEIGHT,
     paddingTop: 0,
     paddingBottom: 0,
     backgroundColor: '#6198D8',

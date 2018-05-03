@@ -6,6 +6,7 @@ import RegisterForm from '../../components/register-form'
 import {getSindicates} from '../../api/selects'
 import {Toast} from 'native-base'
 import {register} from "../../thunks/auth"
+import {STATUS_BAR_HEIGHT} from "../../utils/constants";
 
 class GuestRegister extends React.Component {
   state = {
@@ -52,6 +53,7 @@ GuestRegister.navigationOptions = {
   title: "Cadastro",
   headerMode: 'screen',
   headerStyle: {
+    marginTop: -STATUS_BAR_HEIGHT,
     paddingTop: 0,
     paddingBottom: 0,
     backgroundColor: '#6198D8',

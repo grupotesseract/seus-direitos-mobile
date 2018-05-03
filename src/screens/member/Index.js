@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { StyleSheet, View, Image, TouchableOpacity } from 'react-native'
+import { WebBrowser } from 'expo'
 import MainView from '../../components/main'
 import {Button, Text, Toast} from 'native-base';
 import hands from '../../../assets/icons/hands.png'
@@ -38,6 +39,8 @@ class MemberIndex extends React.Component {
     text: 'Esta função será liberada em breve!',
     duration: 4000
   })
+  handleClickConvencoes = () => WebBrowser.openBrowserAsync('https://www.seusindicato.com.br/'+ this.props.user.sindicato_id + '/convencoes')
+  handleClickNoticias = () => WebBrowser.openBrowserAsync('https://www.seusindicato.com.br/'+ this.props.user.sindicato_id + '/noticias')
 
   render () {
     return (
@@ -54,7 +57,7 @@ class MemberIndex extends React.Component {
 
           <View style={{ flexDirection: 'row', marginTop: 16}}>
             <TouchableOpacity
-              onPress={this.handlePressFeatures}
+              onPress={this.handleClickNoticias}
               style={{flex: 1, borderColor: 'red', borderWidth: 1, borderTopLeftRadius: 8, alignItems: 'center'}}>
               <Image source={news} style={{width: 140, height: 140, resizeMode: Image.resizeMode.contain}}/>
             </TouchableOpacity>
@@ -71,7 +74,7 @@ class MemberIndex extends React.Component {
               <Image source={talk} style={{width: 140, height: 140, resizeMode: Image.resizeMode.contain}}/>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={this.handlePressFeatures}
+              onPress={this.handleClickConvencoes}
               style={{flex: 1, borderColor: 'green', borderWidth: 1, borderBottomRightRadius: 8, alignItems: 'center'}}>
               <Image source={hands} style={{width: 140, height: 140, resizeMode: Image.resizeMode.contain}}/>
             </TouchableOpacity>
@@ -96,4 +99,8 @@ MemberIndex.navigationOptions = {
   header: null,
 }
 
-export default connect(null, {logout})(MemberIndex)
+const mapStateToProps = state => ({
+  user: state.auth.current
+})
+
+export default connect(mapStateToProps, {logout})(MemberIndex)

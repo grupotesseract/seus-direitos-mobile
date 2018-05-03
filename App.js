@@ -41,7 +41,7 @@ export default class App extends React.Component {
     const userResponse = await getCurrentUser()
     const videoResponse = await getFeaturedVideo()
 
-    return this.setState({
+    this.setState({
       currentUser: userResponse.email ? userResponse : null,
       featuredVideo: videoResponse.data ? videoResponse.data[0] : null,
       isReady: true,

@@ -14,6 +14,5 @@ export default ({ loggedIn = false }) => StackNavigator({
   GuestVideos: { screen: GuestVideos },
   MemberNavigator: { screen: MemberNavigator },
 }, {
-  headerMode: 'none',
   initialRouteName: loggedIn ? 'GuestWizardNext' : 'GuestWizard'
 })

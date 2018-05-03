@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   mb: {
-    marginBottom: 16
+    marginBottom: 12
   },
   bordered: {
     margin: 16,
@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
   consultarClt: {
     fontSize: 16,
     fontFamily: 'roboto-medium',
-    marginVertical: 24,
     textAlign: 'center',
     color: '#D86161',
     width: '100%'
@@ -33,9 +32,8 @@ const styles = StyleSheet.create({
   verVideos: {
     fontSize: 16,
     fontFamily: 'roboto-medium',
-    marginVertical: 16,
     textAlign: 'center',
-    color: 'white',
+    color: '#fff',
     width: '100%'
   },
   register: {
@@ -78,6 +76,7 @@ class GuestLogin extends React.Component {
         <View style={[styles.paddingH, styles.mb]}>
           <Button
             onPress={this.handleGoToVideos}
+            style={styles.mb}
           >
             <Text style={styles.verVideos}>VOLTAR PARA SEUS DIREITOS</Text>
           </Button>

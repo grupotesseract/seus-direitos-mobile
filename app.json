@@ -1,8 +1,9 @@
 {
   "expo": {
-    "name": "seus-direitos",
-    "description": "An empty new project",
-    "slug": "seus-direitos",
+    "name": "Seus Direitos",
+    "scheme": "seusdireitos",
+    "description": "Somos uma empresa com a intenção de levar informações sobre leis, direitos, deveres e dia-a-dia de forma mais humana e acessível a sociedade.",
+    "slug": "seusdireitos",
     "privacy": "public",
     "sdkVersion": "27.0.0",
     "version": "1.0.0",
@@ -17,7 +18,11 @@
       "assetExts": ["ttf", "mp4"]
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false
+    },
+    "android": {
+      "package": "com.seusdireitos",
+      "versionCode": 2
     }
   }
 }

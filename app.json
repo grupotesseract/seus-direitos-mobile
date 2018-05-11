@@ -24,7 +24,7 @@
     },
     "android": {
       "package": "com.seusdireitos",
-      "versionCode": 2
+      "versionCode": 3
     }
   }
 }

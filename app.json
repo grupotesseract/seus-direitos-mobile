@@ -10,9 +10,11 @@
     "orientation": "portrait",
     "primaryColor": "#3F51B5",
     "icon": "./assets/icons/app_icon.png",
-    "loading": {
-      "icon": "./assets/icons/app-loading.png",
-      "hideExponentText": true
+    "splash": {
+      "backgroundColor": "#FFFFFF",
+      "image": "./assets/icons/app-loading.png",
+      "tabletImage": "./assets/icons/app-loading.png",
+      "resizeMode": "contain"
     },
     "packagerOpts": {
       "assetExts": ["ttf", "mp4"]

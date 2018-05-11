@@ -44,24 +44,23 @@ class Wizard extends React.Component {
             </Text>
 
             <Text  style={{ fontSize: 18, textAlign: 'center', color: '#95989A' }}>
-              Para ver mais vídeos do Seus Direitos
               <Text
-                style={{ color: '#6198D8', fontFamily: 'roboto-medium' }}
+                style={{ fontSize: 18, color: '#6198D8' }}
                 onPress={this.handleGoToVideos}
-              > CLIQUE AQUI </Text>
+              > Vídeos/Animações Anteriores </Text>
             </Text>
 
             <Text style={{ fontSize: 18, textAlign: 'center', color: '#95989A' }}>
-              Para saber mais sobre o Seu Sindicato
+              Os direitos da sua categoria estão
               <Text
-                style={{ color: '#6198D8', fontFamily: 'roboto-medium' }}
+                style={{ fontSize: 18, color: '#6198D8' }}
                 onPress={this.handleGoToLogin}
-              > CLIQUE AQUI </Text>
+              > aqui </Text>
             </Text>
 
             <Text style={{ fontSize: 18, textAlign: 'center', marginBottom: 8, color: '#95989A' }}>
-              Além de todo este material você também pode
-              <Text onPress={this.handleOpenCLT} style={{ color: '#6198D8', fontFamily: 'roboto-medium' }}> CONSULTAR SUA CLT </Text>
+              Consulte a nova CLT
+              <Text onPress={this.handleOpenCLT} style={{ fontSize: 18, color: '#6198D8' }}> aqui </Text>
             </Text>
           </View>
         </Content>

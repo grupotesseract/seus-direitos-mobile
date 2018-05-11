@@ -54,10 +54,11 @@ class MemberIndex extends React.Component {
   }
 
   render () {
+    console.log(this.props.user)
     return (
       <MainView>
         <View style={[styles.paddingH, styles.mt]}>
-          <View style={{ flexDirection: 'row', marginTop: 16}}>
+          <View style={{ flexDirection: 'row', marginTop: 36 }}>
             <TouchableOpacity
               onPress={this.handleClickNoticias}
               style={{flex: 1, borderColor: 'red', borderWidth: 1, borderTopLeftRadius: 8, alignItems: 'center'}}>

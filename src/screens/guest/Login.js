@@ -63,7 +63,7 @@ class GuestLogin extends React.Component {
           <View style={[styles.paddingH, styles.register]}>
             <Text style={{ alignSelf: 'center' }}>Não possui uma conta?</Text>
             <Button transparent style={{ width: 100, alignSelf: 'center' }} onPress={this.handleRegister}>
-              <Text style={{ fontFamily: 'roboto-medium', color: '#020F50', paddingLeft: 5, paddingRight: 0 }}>Cadastre-se!</Text>
+              <Text style={{ fontFamily: 'roboto-medium', color: '#020F50', paddingLeft: 0, paddingRight: 0 }}> Cadastre-se!</Text>
             </Button>
           </View>
 

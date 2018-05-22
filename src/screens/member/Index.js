@@ -42,23 +42,20 @@ class MemberIndex extends React.Component {
   handleClickConvencoes = () => WebBrowser.openBrowserAsync('https://www.seusindicato.com.br/sindicatos/'+ this.props.user.sindicato_id + '/convencoes')
   handleClickNoticias = () => WebBrowser.openBrowserAsync('https://www.seusindicato.com.br/sindicatos/'+ this.props.user.sindicato_id + '/noticias')
 
-  renderSindicalContribution () {
-    return <Button
-      full
-      primary
-      onPress={this.handleClickBenefits}
-      style={styles.button}
-    >
-      <Text uppercase style={styles.white}>Não perca seus direitos e benefícios - Clique aqui</Text>
-    </Button>
-  }
-
   render () {
     console.log(this.props.user)
     return (
       <MainView>
         <View style={[styles.paddingH, styles.mt]}>
-          <View style={{ flexDirection: 'row', marginTop: 36 }}>
+          <Button
+            full
+            primary
+            onPress={this.handleClickBenefits}
+            style={styles.button}
+          >
+            <Text uppercase style={styles.white}>Não perca seus direitos e benefícios - Clique aqui</Text>
+          </Button>
+          <View style={{ flexDirection: 'row', marginTop: 16 }}>
             <TouchableOpacity
               onPress={this.handleClickNoticias}
               style={{flex: 1, borderColor: 'red', borderWidth: 1, borderTopLeftRadius: 8, alignItems: 'center'}}>

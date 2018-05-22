@@ -39,10 +39,6 @@ class Wizard extends React.Component {
           { Boolean(featuredVideo) && <WebView source={{ uri: "https://www.youtube.com/embed/" + featuredVideo.youtube_id }} /> }
           <View style={{alignItems: 'center', padding: 24, flex: 1, flexDirection: 'column', justifyContent: 'space-between', backgroundColor: '#fafafa', width: '100%' }}>
 
-            <Text style={{ fontSize: 18, textAlign: 'center', marginBottom: 8, color: '#95989A' }}>
-              Para entender mais sobre nossa missão veja o vídeo de introdução acima.
-            </Text>
-
             <Text  style={{ fontSize: 18, textAlign: 'center', color: '#95989A' }}>
               <Text
                 style={{ fontSize: 18, color: '#6198D8' }}

@@ -88,16 +88,6 @@ class MemberSindicalAuthorization extends React.Component {
       <MainView>
         <Content style={[styles.paddingH, styles.mt]}>
           {renderedBenefits}
-          <Button
-            full
-            primary
-            onPress={this.handlePress}
-            style={styles.btn}
-          >
-            <Text uppercase style={styles.white}>
-              { !authorized ? 'AUTORIZAR CONTRIBUIÇÃO' : 'DESAUTORIZAR CONTRIBUIÇÃO' }
-              </Text>
-          </Button>
         </Content>
       </MainView>
     )

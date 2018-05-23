@@ -20,7 +20,9 @@
       "assetExts": ["ttf", "mp4"]
     },
     "ios": {
-      "supportsTablet": false
+      "supportsTablet": false,
+      "bundleIdentifier": "com.seusdireitos",
+      "buildNumber": "1.0"
     },
     "android": {
       "package": "com.seusdireitos",

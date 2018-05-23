@@ -18,8 +18,8 @@ const styles = StyleSheet.create({
 })
 
 const CustomStatusBar = ({backgroundColor, ...props}) => (
-  <View style={[styles.statusBar, { backgroundColor }]}>
-    <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+  <View style={[styles.statusBar, { backgroundColor: '#3F51B5' }]}>
+    <StatusBar barStyle="light-content" translucent backgroundColor="#3F51B5" {...props} />
   </View>
 )
 
@@ -72,7 +72,7 @@ export default class App extends React.Component {
       <Provider store={store}>
         <StyleProvider style={getTheme(material)}>
           <Root>
-            <CustomStatusBar barStyle="light-content" backgroundColor="#3F51B5" translucent />
+            <CustomStatusBar  />
             <RenderedMainNavigator />
           </Root>
         </StyleProvider>

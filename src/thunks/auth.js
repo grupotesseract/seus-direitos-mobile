@@ -28,7 +28,6 @@ export const logout = (nav) => async dispatch => {
 export const register = (values) => async dispatch => {
   const data = {
     ...values,
-    aceitou_contribuicao: false,
     sindicato_id: values.sindicate.id,
     cidade_id: values.sindicate.cities.length === 1 ? values.sindicate.cities[0].id : values.city.id
   }

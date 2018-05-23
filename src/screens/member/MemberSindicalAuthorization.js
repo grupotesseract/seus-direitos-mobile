@@ -95,7 +95,7 @@ class MemberSindicalAuthorization extends React.Component {
 }
 
 MemberSindicalAuthorization.navigationOptions = {
-  headerMode: 'screen',
+  headerMode: 'auto',
   title: 'Por quê contribuir?',
   headerStyle: {
     marginTop: -STATUS_BAR_HEIGHT,

@@ -4,7 +4,8 @@ import GuestWizardNext from './guest/WizardNext'
 import GuestLogin from './guest/Login'
 import GuestRegister from './guest/Register'
 import GuestVideos from './guest/Videos'
-import MemberNavigator from './member/MemberNavigator'
+import MemberSindicalAuthorization from './member/MemberSindicalAuthorization'
+import MemberIndex from './member/Index'
 
 export default ({ loggedIn = false }) => StackNavigator({
   GuestWizard: { screen: GuestWizard },
@@ -12,7 +13,8 @@ export default ({ loggedIn = false }) => StackNavigator({
   GuestLogin: { screen: GuestLogin },
   GuestRegister: { screen: GuestRegister },
   GuestVideos: { screen: GuestVideos },
-  MemberNavigator: { screen: MemberNavigator },
+  MemberIndex: { screen: MemberIndex },
+  MemberSindicalAuthorization: { screen: MemberSindicalAuthorization },
 }, {
   initialRouteName: loggedIn ? 'GuestWizardNext' : 'GuestWizard'
 })

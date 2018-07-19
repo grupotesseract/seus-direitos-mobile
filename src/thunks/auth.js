@@ -1,6 +1,6 @@
-import {fetchAuthLogin, errorAuthLogin} from '../actions/auth'
+import {setUserData, fetchAuthLogin, errorAuthLogin} from '../actions/auth'
 import storage from '../utils/storage'
-import {createUser, validateCredentials} from '../api/auth'
+import {createUser, validateCredentials, getCurrentUser} from '../api/auth'
 import {SubmissionError} from 'redux-form'
 import _get from 'lodash/get'
 
@@ -19,8 +19,8 @@ export const login = (credentials) => async dispatch => {
 }
 
 export const logout = (nav) => async dispatch => {
-  await storage.delete('access_token')
-  dispatch(errorAuthLogin())
+  // await storage.delete('access_token')
+  // dispatch(errorAuthLogin())
 
   return nav.navigate('GuestWizardNext')
 }
@@ -40,4 +40,14 @@ export const register = (values) => async dispatch => {
 
   await storage.save('access_token', response.success.token)
   dispatch(fetchAuthLogin(data))
+}
+
+export const getUserFromToken = () => async dispatch => {
+  const response = await getCurrentUser()
+
+  if (response.error) {
+    throw new SubmissionError(response.error)
+  }
+
+  dispatch(setUserData(response))
 }

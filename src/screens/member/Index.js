@@ -8,7 +8,8 @@ import hands from '../../../assets/icons/hands.png'
 import news from '../../../assets/icons/news.png'
 import talk from '../../../assets/icons/talk.png'
 import vacation from '../../../assets/icons/vacation.png'
-import {logout} from "../../thunks/auth"
+import {getUserFromToken, logout} from "../../thunks/auth"
+import _get from 'lodash/get'
 
 const styles = StyleSheet.create({
   mt: {
@@ -24,6 +25,11 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
   },
+  primary: {
+    color: '#020F50',
+    textAlign: 'center',
+    paddingVertical: 20
+  },
   button: {
     flexDirection: 'column',
     marginVertical: 16,
@@ -33,6 +39,10 @@ const styles = StyleSheet.create({
 })
 
 class MemberIndex extends React.Component {
+  componentDidMount() {
+    this.props.getUserFromToken()
+  }
+
   handleLogout = () => this.props.logout(this.props.navigation)
   handleClickBenefits = () => this.props.navigation.navigate('MemberSindicalAuthorization')
   handlePressFeatures = () => Toast.show({
@@ -41,12 +51,17 @@ class MemberIndex extends React.Component {
   })
   handleClickConvencoes = () => WebBrowser.openBrowserAsync('https://www.seusindicato.com.br/sindicatos/'+ this.props.user.sindicato_id + '/convencoes')
   handleClickNoticias = () => WebBrowser.openBrowserAsync('https://www.seusindicato.com.br/sindicatos/'+ this.props.user.sindicato_id + '/noticias')
+  handleTalkToUs = () => WebBrowser.openBrowserAsync('https://www.seusindicato.com.br/faleconosco/'+ this.props.user.sindicato_id )
 
   render () {
-    console.log(this.props.user)
+    const {user} = this.props
+
+    const sindicateName = _get(user, 'sindicato.nome', null)
+
     return (
       <MainView>
         <View style={[styles.paddingH, styles.mt]}>
+          { sindicateName && <Text uppercase style={styles.primary}>{sindicateName}</Text> }
           <Button
             full
             primary
@@ -69,7 +84,7 @@ class MemberIndex extends React.Component {
           </View>
           <View style={{flex: 1, flexDirection: 'row'}}>
             <TouchableOpacity
-              onPress={this.handlePressFeatures}
+              onPress={this.handleTalkToUs}
               style={{flex: 1, borderColor: 'purple', borderWidth: 1, borderBottomLeftRadius: 8, alignItems: 'center'}}>
               <Image source={talk} style={{width: 140, height: 140, resizeMode: Image.resizeMode.contain}}/>
             </TouchableOpacity>
@@ -103,4 +118,4 @@ const mapStateToProps = state => ({
   user: state.auth.current
 })
 
-export default connect(mapStateToProps, {logout})(MemberIndex)
+export default connect(mapStateToProps, {getUserFromToken, logout})(MemberIndex)

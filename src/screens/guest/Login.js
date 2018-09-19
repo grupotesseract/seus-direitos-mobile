@@ -73,13 +73,6 @@ class GuestLogin extends React.Component {
           >
             <Text style={styles.verVideos}>VOLTAR PARA SEUS DIREITOS</Text>
           </Button>
-
-          <Button
-            transparent
-            onPress={this.handleClickClt}
-          >
-            <Text style={styles.consultarClt}>CONSULTAR CLT</Text>
-          </Button>
         </View>
       </MainView>
     )

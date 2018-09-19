@@ -1,8 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { StyleSheet, Platform } from 'react-native'
+import { StyleSheet, Platform } from 'react-native';
+import {WebBrowser} from 'expo'
 import MainView from '../../components/main'
-import { Container, Content, View, Button, Text, Toast, Icon } from 'native-base';
+import { Content, View, Button, Text, Toast, Icon } from 'native-base';
 import {requestSindicateBenefits, toggleContribution} from "../../thunks/benefit";
 import {STATUS_BAR_HEIGHT} from "../../utils/constants";
 
@@ -34,9 +35,12 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   btn: {
-    backgroundColor: '#020F50',
-    marginVertical: 8
-  }
+    fontSize: 16,
+    fontFamily: 'roboto-medium',
+    textAlign: 'center',
+    color: '#D86161',
+    width: '100%'
+  },
 })
 
 class MemberSindicalAuthorization extends React.Component {
@@ -62,6 +66,10 @@ class MemberSindicalAuthorization extends React.Component {
     })
   }
 
+  handleClick = () => {
+    return WebBrowser.openBrowserAsync('https://www.seusindicato.com.br/carteirinha/' + this.props.userId)
+  }
+
   renderBenefits (benefits) {
     return benefits.map((benefit, key) => {
       return <View style={styles.item} key={'benefit-id-'+ key}>
@@ -72,7 +80,7 @@ class MemberSindicalAuthorization extends React.Component {
   }
 
   render () {
-    const {benefits, fetching, error, authorized} = this.props
+    const {benefits, fetching, error} = this.props
 
     if (fetching || error) {
       return (
@@ -88,6 +96,15 @@ class MemberSindicalAuthorization extends React.Component {
       <MainView>
         <Content style={[styles.paddingH, styles.mt]}>
           {renderedBenefits}
+
+          <View style={{ marginTop: 16 }}>
+            <Button
+              transparent
+              onPress={this.handleClick}
+            >
+              <Text style={styles.btn}>CONSULTAR CLT</Text>
+            </Button>
+          </View>
         </Content>
       </MainView>
     )
@@ -109,6 +126,7 @@ MemberSindicalAuthorization.navigationOptions = {
 
 function mapStateToProps(state) {
   return {
+    userId: state.auth.current.id,
     authorized: state.auth.current.aceitou_contribuicao,
     sindicateId: state.auth.current.sindicato_id,
     benefits: state.benefit.list.data,

@@ -68,7 +68,7 @@ class MemberIndex extends React.Component {
             onPress={this.handleClickBenefits}
             style={styles.button}
           >
-            <Text uppercase style={styles.white}>Não perca seus direitos e benefícios - Clique aqui</Text>
+            <Text uppercase style={styles.white}>Benefícios e Carteirinha</Text>
           </Button>
           <View style={{ flexDirection: 'row', marginTop: 16 }}>
             <TouchableOpacity
@@ -94,6 +94,10 @@ class MemberIndex extends React.Component {
               <Image source={hands} style={{width: 140, height: 140, resizeMode: Image.resizeMode.contain}}/>
             </TouchableOpacity>
           </View>
+        </View>
+
+        <View style={{ marginTop: 16 }}>
+          <Text>Seu Sindicato - Presente na sua Vida</Text>
         </View>
 
         <View style={{ marginTop: 50 }}>

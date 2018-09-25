@@ -97,7 +97,7 @@ class MemberIndex extends React.Component {
         </View>
 
         <View style={{ marginTop: 16 }}>
-          <Text>Seu Sindicato - Presente na sua Vida</Text>
+          <Text style={{ color: '#777', textAlign: 'center' }}>Seu Sindicato - Presente na sua Vida</Text>
         </View>
 
         <View style={{ marginTop: 50 }}>

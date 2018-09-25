@@ -53,11 +53,6 @@ class Wizard extends React.Component {
                 onPress={this.handleGoToLogin}
               > aqui </Text>
             </Text>
-
-            <Text style={{ fontSize: 18, textAlign: 'center', marginBottom: 8, color: '#95989A' }}>
-              Consulte a nova CLT
-              <Text onPress={this.handleOpenCLT} style={{ fontSize: 18, color: '#6198D8' }}> aqui </Text>
-            </Text>
           </View>
         </Content>
       </Container>

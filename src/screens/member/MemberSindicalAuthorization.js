@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'roboto-medium',
     textAlign: 'center',
-    color: '#D86161',
+    color: 'white',
     width: '100%'
   },
 })
@@ -97,12 +97,9 @@ class MemberSindicalAuthorization extends React.Component {
         <Content style={[styles.paddingH, styles.mt]}>
           {renderedBenefits}
 
-          <View style={{ marginTop: 16 }}>
-            <Button
-              transparent
-              onPress={this.handleClick}
-            >
-              <Text style={styles.btn}>CONSULTAR CLT</Text>
+          <View style={{ marginTop: 16, textAlign: 'center' }}>
+            <Button onPress={this.handleClick}>
+              <Text uppercase style={styles.btn}>Acesse Aqui sua carteirinha digital</Text>
             </Button>
           </View>
         </Content>

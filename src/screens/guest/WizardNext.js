@@ -37,9 +37,9 @@ class Wizard extends React.Component {
       <Container>
         <Content contentContainerStyle={{ flex: 1 }}>
           { Boolean(featuredVideo) && <WebView source={{ uri: "https://www.youtube.com/embed/" + featuredVideo.youtube_id }} /> }
-          <View style={{alignItems: 'center', padding: 24, flex: 1, flexDirection: 'column', justifyContent: 'space-around', backgroundColor: '#fafafa', width: '100%' }}>
+          <View style={{alignItems: 'center', padding: 24, flex: 1, flexDirection: 'column', justifyContent: 'center', backgroundColor: '#fafafa', width: '100%' }}>
 
-            <Text style={{ fontSize: 18, textAlign: 'center', color: '#95989A', marginBottom: 15 }}>
+            <Text style={{ fontSize: 18, textAlign: 'center', color: '#95989A', marginBottom: 50 }}>
               <Text
                 style={{ fontSize: 18, color: '#6198D8' }}
                 onPress={this.handleGoToVideos}

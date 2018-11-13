@@ -1,43 +1,66 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, ImageBackground } from 'react-native'
 import { Button, Text, H2 } from 'native-base'
 import SeusDireitos from '../../components/seus-direitos'
 import Title from '../../components/title'
 
 class Wizard extends React.Component {
-  constructor(props) {
-    super(props)
+    constructor(props) {
+        super(props)
 
-    this.handlePress = this.handlePress.bind(this)
-  }
+        this.handlePress = this.handlePress.bind(this)
+    }
 
-  handlePress () {
-    this.props.navigation.navigate('GuestWizardNext')
-  }
+    handlePress () {
+        this.props.navigation.navigate('GuestWizardNext')
+    }
 
-  render () {
-    return (
-      <View style={{ flex: 1, backgroundColor: 'white',  alignItems: 'center', flexDirection: 'column' }}>
-        <View style={{ height: 200, alignItems: 'center', justifyContent: 'center' }}>
-          <SeusDireitos />
-        </View>
-        <View style={{alignItems: 'center', padding: 24, flex: 1, flexDirection: 'column', backgroundColor: '#fafafa', width: '100%' }}>
-          <Title type="header" text="SEJA BEM-VINDO(A)" />
-          <Text style={{ fontSize: 18, marginVertical: 40, textAlign: 'center', color: '#95989A' }}>
-            Neste aplicativo você assiste vídeos e animações sobre as leis que regulam o seu dia a dia.
-            Acesse área exclusiva onde estão disponíveis os Seus Direitos e Benefícios conquistados pela sua categoria de trabalho.
-          </Text>
-        </View>
-        <Button block large onPress={this.handlePress}>
-          <Text uppercase>próximo</Text>
-        </Button>
-      </View>
-    )
-  }
+    render () {
+        const styles = StyleSheet.create({
+            container: {
+                alignItems: 'center',
+                justifyContent: 'center',
+                flex: 1
+            },
+            btnNext: {
+                backgroundColor: 'white',
+                // width: 200,
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderRadius: 8,
+                paddingLeft: 15,
+                paddingRight: 15,
+                paddingTop: 20,
+                paddingBottom: 20
+            }
+        })
+
+        return (
+            <ImageBackground style={styles.container} source={require('../../../assets/icons/begin_screen_bg.png')}>
+
+                <View style={{ flex: 1,  alignItems: 'center', justifyContent: 'center', flexDirection: 'column', paddingBottom: 40 }}>
+                    <View style={{ height: 200, alignItems: 'center', justifyContent: 'center' }}>
+                        <SeusDireitos />
+                    </View>
+                    <View style={{justifyContent: 'flex-end', paddingBottom: 30, paddingRight: 60, paddingLeft: 60, flex: 1, flexDirection: 'column', width: '100%' }}>
+                        <Text style={{ fontSize: 18, textAlign: 'center', color: '#95989A' }}>
+                            Um olhar mais humano e simples sobre as leis
+                        </Text>
+                    </View>
+                    <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                        <Button style={styles.btnNext} onPress={this.handlePress}>
+                            <Text uppercase style={{ color: '#006699', fontSize: 26 }}>Começar</Text>
+                        </Button>
+                    </View>
+                </View>
+
+            </ImageBackground>
+        )
+    }
 }
 
 Wizard.navigationOptions = {
-  header: null
+    header: null
 }
 
 export default Wizard

@@ -5,8 +5,8 @@ import video from './video'
 import benefit from './benefit'
 
 export default combineReducers({
-  form,
-  auth,
-  video,
-  benefit,
+    form,
+    auth,
+    video,
+    benefit,
 });

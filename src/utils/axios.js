@@ -4,8 +4,8 @@ import _get from 'lodash/get'
 
 export default function () {
     const instance = axios.create({
-        // baseURL:'https://www.seusindicato.com.br/api/',
-        baseURL:'https://seusindicato.grupotesseract.com.br/api',
+        baseURL:'https://www.seusindicato.com.br/api/',
+        // baseURL:'https://seusindicato.grupotesseract.com.br/api',
         headers: {
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json',

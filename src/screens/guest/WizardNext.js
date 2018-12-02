@@ -78,7 +78,7 @@ class Wizard extends React.Component {
       return (
           <Drawer
               ref={(ref) => { this.drawer = ref; }}
-              content={<SideBar navigator={this.navigator} />}
+              content={<SideBar navigation={this.props.navigation} />}
               onClose={() => this.closeDrawer()}>
               <Container style={{ display: 'flex', width: '100%' }}>
                   <Header style={ styles.containerView }>
@@ -102,7 +102,9 @@ class Wizard extends React.Component {
                               </View>
                           </View>
 
-                          <MainSlider propagandas={featuredPropagandas} />
+                          <View style={{ display: 'flex', height: 150 }}>
+                              <MainSlider propagandas={featuredPropagandas} />
+                          </View>
 
                           <View style={{ paddingHorizontal: 10, paddingVertical: 10, flex: 1, height: 400 }}>
                               <View style={{ paddingHorizontal: 10, paddingVertical: 10, backgroundColor: '#fff', height: '100%' }}>

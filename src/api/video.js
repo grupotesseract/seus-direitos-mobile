@@ -8,7 +8,7 @@ export const getVideos = (data) => {
 }
 
 export const getFeaturedVideo = () => {
-  return axios().get('video-home')
+  return axios().get('home')
     .then(res => res.data)
     .catch(err => err.response)
 }

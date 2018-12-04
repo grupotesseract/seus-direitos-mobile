@@ -43,9 +43,9 @@ class Wizard extends React.Component {
                         <SeusDireitos />
                     </View>
                     <View style={{justifyContent: 'flex-end', paddingBottom: 30, paddingRight: 60, paddingLeft: 60, flex: 1, flexDirection: 'column', width: '100%' }}>
-                        <Text style={{ fontSize: 18, textAlign: 'center', color: '#95989A' }}>
+                        {/* <Text style={{ fontSize: 18, textAlign: 'center', color: '#95989A' }}>
                             Um olhar mais humano e simples sobre as leis
-                        </Text>
+                        </Text> */}
                     </View>
                     <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                         <Button style={styles.btnNext} onPress={this.handlePress}>

@@ -32,51 +32,51 @@ export default class App extends React.Component {
   }
 
   async componentDidMount () {
-    await Font.loadAsync({
-      'roboto': require('./assets/fonts/Roboto.ttf'),
-      'roboto-medium': require('./assets/fonts/Roboto_medium.ttf'),
-      'roboto-mono-bold': require('./assets/fonts/Roboto_Mono_Bold.ttf'),
-    })
+      await Font.loadAsync({
+          'roboto': require('./assets/fonts/Roboto.ttf'),
+          'roboto-medium': require('./assets/fonts/Roboto_medium.ttf'),
+          'roboto-mono-bold': require('./assets/fonts/Roboto_Mono_Bold.ttf'),
+      })
 
-    const userResponse = await getCurrentUser()
-    const videoResponse = await getFeaturedVideo()
+      const userResponse = await getCurrentUser()
+      const videoResponse = await getFeaturedVideo()
 
-    this.setState({
-      currentUser: userResponse.email ? userResponse : null,
-      featuredVideo: videoResponse.data ? videoResponse.data[0] : null,
-      isReady: true,
-    })
+      this.setState({
+          currentUser: userResponse.email ? userResponse : null,
+          featuredVideo: videoResponse.data ? videoResponse.data : null,
+          isReady: true,
+      })
   }
 
   render () {
-    const {isReady, currentUser, featuredVideo} = this.state
+      const {isReady, currentUser, featuredVideo} = this.state
 
-    if (!isReady) return <AppLoading />
+      if (!isReady) return <AppLoading />
 
-    const store = createStore({
-      auth: { current: currentUser },
-      video: {
-        list: {
-          data: [],
-          fetching: false,
-          error: null,
-          hasMore: true,
-        },
-        featured: featuredVideo
-      }
-    })
+      const store = createStore({
+          auth: { current: currentUser },
+          video: {
+              list: {
+                  data: [],
+                  fetching: false,
+                  error: null,
+                  hasMore: true,
+              },
+              featured: featuredVideo
+          }
+      })
 
-    const RenderedMainNavigator = MainNavigator({ loggedIn: Boolean(currentUser) })
+      const RenderedMainNavigator = MainNavigator({ loggedIn: Boolean(currentUser) })
 
-    return (
-      <Provider store={store}>
-        <StyleProvider style={getTheme(material)}>
-          <Root>
-            <CustomStatusBar  />
-            <RenderedMainNavigator />
-          </Root>
-        </StyleProvider>
-      </Provider>
-    )
+      return (
+          <Provider store={store}>
+              <StyleProvider style={getTheme(material)}>
+                  <Root>
+                      <CustomStatusBar  />
+                      <RenderedMainNavigator />
+                  </Root>
+              </StyleProvider>
+          </Provider>
+      )
   }
 }

@@ -36,6 +36,9 @@ export default class App extends React.Component {
           'roboto': require('./assets/fonts/Roboto.ttf'),
           'roboto-medium': require('./assets/fonts/Roboto_medium.ttf'),
           'roboto-mono-bold': require('./assets/fonts/Roboto_Mono_Bold.ttf'),
+          'niramid-regular': require('./assets/fonts/Niramit-Regular.ttf'),
+          'niramid-medium': require('./assets/fonts/Niramit-Medium.ttf'),
+          'niramid-bold': require('./assets/fonts/Niramit-Bold.ttf'),
       })
 
       const userResponse = await getCurrentUser()

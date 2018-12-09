@@ -29,8 +29,17 @@ const styles = StyleSheet.create({
     },
     formInput: {
         width: '10%',
-        backgroundColor: '#000',
-        display: 'flex'
+        backgroundColor: 'rgba(255, 255, 255, 0.4)',
+        color: '#000',
+        display: 'flex',
+        borderStyle: 'solid',
+        borderRightWidth: 2,
+        borderRightColor: '#000',
+        borderBottomWidth: 2,
+        borderBottomColor: '#000',
+        fontFamily: 'niramid-regular',
+        marginBottom: 2
+
     }
 })
 
@@ -48,7 +57,7 @@ class LoginForm extends React.Component {
 
                 <Field
                     name="email"
-                    label="E-mail"
+                    label="email"
                     style={ styles.formInput }
                     type="email-address"
                     component={TextInput}
@@ -58,7 +67,7 @@ class LoginForm extends React.Component {
 
                 <Field
                     name="password"
-                    label="Senha"
+                    label="senha"
                     style={ styles.formInput }
                     secure
                     component={TextInput}
@@ -71,8 +80,9 @@ class LoginForm extends React.Component {
                     style={styles.submitBtn}
                     onPress={handleSubmit}
                     disabled={submitting}
+                    lowercase
                     >
-                    <Text style={{ fontFamily: 'niramid-medium' }}>{ 'entrar'.toLowerCase() }</Text>
+                    <Text lowercase style={{ fontFamily: 'niramid-medium' }}>{ 'entrar'.toLowerCase() }</Text>
                 </Button>
             </View>
         )

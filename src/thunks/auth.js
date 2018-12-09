@@ -19,8 +19,8 @@ export const login = (credentials) => async dispatch => {
 }
 
 export const logout = (nav) => async dispatch => {
-  // await storage.delete('access_token')
-  // dispatch(errorAuthLogin())
+  await storage.delete('access_token')
+  dispatch(errorAuthLogin())
 
   return nav.navigate('GuestWizardNext')
 }

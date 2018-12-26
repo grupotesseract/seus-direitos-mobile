@@ -24,14 +24,20 @@ class Wizard extends React.Component {
             },
             btnNext: {
                 backgroundColor: 'white',
-                // width: 200,
+                // // width: 200,
                 justifyContent: 'center',
                 alignItems: 'center',
                 borderRadius: 8,
-                paddingLeft: 15,
-                paddingRight: 15,
-                paddingTop: 20,
-                paddingBottom: 20
+                // paddingLeft: 15,
+                // paddingRight: 15,
+                // paddingTop: 20,
+                // paddingBottom: 20,
+                // display: 'flex'
+            },
+            btnNextText: {
+                color: '#006699',
+                fontSize: 26,
+                display: 'flex'
             }
         })
 
@@ -49,7 +55,7 @@ class Wizard extends React.Component {
                     </View>
                     <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                         <Button style={styles.btnNext} onPress={this.handlePress}>
-                            <Text uppercase style={{ color: '#006699', fontSize: 26 }}>Começar</Text>
+                            <Text uppercase style={styles.btnNextText}>Começar</Text>
                         </Button>
                     </View>
                 </View>

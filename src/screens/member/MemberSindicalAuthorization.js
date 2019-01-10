@@ -44,68 +44,62 @@ const styles = StyleSheet.create({
 })
 
 class MemberSindicalAuthorization extends React.Component {
-  componentDidMount () {
-    this.props.requestSindicateBenefits(this.props.sindicateId)
-  }
-
-  handlePress = () => {
-    const {toggleContribution, navigation, authorized} = this.props
-
-    toggleContribution(authorized)
-    navigation.goBack()
-
-    const text = authorized ?
-      'Cancelamento da contribuição realizado com sucesso!' : 'Aceite da contribuição realizado com sucesso!'
-
-    Toast.show({
-      text,
-      buttonText: 'Fechar',
-      position: 'top',
-      type: 'success',
-      duration: 4000
-    })
-  }
-
-  handleClick = () => {
-    return WebBrowser.openBrowserAsync('https://www.seusindicato.com.br/carteirinha/' + this.props.userId)
-  }
-
-  renderBenefits (benefits) {
-    return benefits.map((benefit, key) => {
-      return <View style={styles.item} key={'benefit-id-'+ key}>
-        <Icon ios='ios-checkmark' android="md-checkmark" style={styles.icon}/>
-        <Text style={styles.font}>{benefit.nome}</Text>
-      </View>
-    })
-  }
-
-  render () {
-    const {benefits, fetching, error} = this.props
-
-    if (fetching || error) {
-      return (
-        <View style={{ flex: 1, alignItems: 'center', height: '100%', justifyContent: 'center' }}>
-          <Text>Carregando...</Text>
-        </View>
-      )
+    componentDidMount () {
+        this.props.requestSindicateBenefits(this.props.sindicateId)
     }
 
-    const renderedBenefits = this.renderBenefits(benefits)
+    handlePress = () => {
+        const {toggleContribution, navigation, authorized} = this.props
 
-    return (
-      <MainView>
-        <Content style={[styles.paddingH, styles.mt]}>
-          {renderedBenefits}
+        toggleContribution(authorized)
+        navigation.goBack()
 
-          <View style={{ marginTop: 16, textAlign: 'center' }}>
-            <Button onPress={this.handleClick}>
-              <Text uppercase style={styles.btn}>Acesse Aqui sua carteirinha digital</Text>
-            </Button>
-          </View>
-        </Content>
-      </MainView>
-    )
-  }
+        const text = authorized ?
+        'Cancelamento da contribuição realizado com sucesso!' : 'Aceite da contribuição realizado com sucesso!'
+
+        Toast.show({
+            text,
+            buttonText: 'Fechar',
+            position: 'top',
+            type: 'success',
+            duration: 4000
+        })
+    }
+
+    handleClick = () => {
+        return WebBrowser.openBrowserAsync('https://www.seusindicato.com.br/carteirinha/' + this.props.userId)
+    }
+
+    renderBenefits (benefits) {
+        return benefits.map((benefit, key) => {
+            return <View style={styles.item} key={'benefit-id-'+ key}>
+                <Icon ios='ios-checkmark' android="md-checkmark" style={styles.icon}/>
+                <Text style={styles.font}>{benefit.nome}</Text>
+            </View>
+        })
+    }
+
+    render () {
+        const {benefits, fetching, error} = this.props
+
+        if (fetching || error) {
+            return (
+                <View style={{ flex: 1, alignItems: 'center', height: '100%', justifyContent: 'center' }}>
+                    <Text>Carregando...</Text>
+                </View>
+            )
+        }
+
+        const renderedBenefits = this.renderBenefits(benefits)
+
+        return (
+            <MainView>
+                <Content style={[styles.paddingH, styles.mt]}>
+                    {renderedBenefits}
+                </Content>
+            </MainView>
+        )
+    }
 }
 
 MemberSindicalAuthorization.navigationOptions = {

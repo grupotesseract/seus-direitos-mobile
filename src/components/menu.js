@@ -19,7 +19,9 @@ const styles = StyleSheet.create({
     menuItem: {
         fontSize: 16,
         fontWeight: 'bold',
-        paddingVertical: 8
+        paddingVertical: 8,
+        display: 'flex',
+        width: '100%'
     }
 })
 

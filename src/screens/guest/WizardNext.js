@@ -67,7 +67,8 @@ class Wizard extends React.Component {
               height: 40,
               flexDirection: 'column',
               backgroundColor: '#006699',
-              paddingHorizontal: 15
+              paddingHorizontal: 30,
+              paddingTop: 0
           },
       })
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { StyleSheet, View, WebView, Image, Dimensions, TouchableHighlight } from 'react-native'
+import { StyleSheet, View, WebView, Image, Dimensions, TouchableHighlight, Linking } from 'react-native'
 import { Content, Container, Button, Drawer, Header, Text, H2 } from 'native-base'
 import Title from '../../components/title'
 import {WebBrowser} from 'expo'
@@ -34,7 +34,14 @@ class Wizard extends React.Component {
   }
 
   handleOpenFacebook () {
-      WebBrowser.openBrowserAsync('https://www.facebook.com/aquiseusdireitos/')
+      Linking.canOpenURL("fb://facewebmodal/f?href=https://www.facebook.com/aquiseusdireitos/").then(supported => {
+          if (supported) {
+              return Linking.openURL("fb://facewebmodal/f?href=https://www.facebook.com/aquiseusdireitos/");
+          } else {
+              return Linking.openURL("https://www.facebook.com/aquiseusdireitos/");
+          }
+      })
+      // WebBrowser.openBrowserAsync('https://www.facebook.com/aquiseusdireitos/')
   }
 
   closeDrawer = () => {
@@ -99,7 +106,7 @@ class Wizard extends React.Component {
                           <View style={ styles.viewWrapper }>
                               <View style={{ width: '20%', height: '100%', backgroundColor: '#ACC7D2', borderStyle: 'solid', borderRightWidth: 3, borderRightColor: 'white' }}></View>
                               <View style={{ width: '80%', height: '100%', backgroundColor: '#86D4DD', paddingHorizontal: 15, paddingVertical: 5 }}>
-                                  <Text style={{ fontSize: 13, color: '#fff' }}>Conheça seus direitos: uma plataforma de informação, conhecimento e humanidade</Text>
+                                  <Text style={{ fontSize: 13, color: '#fff' }}>Informação rápida e precisa, sobre as leis que regulam o nosso dia a dia</Text>
                               </View>
                           </View>
 
@@ -109,7 +116,7 @@ class Wizard extends React.Component {
 
                           <View style={{ paddingHorizontal: 10, paddingVertical: 10, flex: 1, height: 400 }}>
                               <View style={{ paddingHorizontal: 10, paddingVertical: 10, backgroundColor: '#fff', height: '100%' }}>
-                                  { Boolean(featuredVideo) && <WebView source={{ uri: "https://www.youtube.com/embed/" + featuredVideo.youtube_id }} /> }
+                                  { Boolean(featuredVideo) && <WebView source={{ uri: "https://www.youtube.com/embed/" + featuredVideo.youtube_id + "?rel=0&controls=1&showinfo=0&loop=1" }} /> }
                               </View>
                           </View>
 

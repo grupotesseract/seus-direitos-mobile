@@ -55,7 +55,6 @@ class MainSlider extends Component {
 
         return (
             <ImageSlider
-                loopBothSides
                 autoPlayWithInterval={3000}
                 images={this.carregaPropagandas( this.props.propagandas )}
             />

@@ -102,7 +102,7 @@ class MemberIndex extends React.Component {
         text: 'Esta função será liberada em breve!',
         duration: 4000
     })
-    handleClickConvencoes = () => WebBrowser.openBrowserAsync('https://www.seusindicato.com.br/sindicatos/'+ this.props.user.sindicato_id + '/convencoes')
+    handleClickConvencoes = () => WebBrowser.openBrowserAsync('https://www.seusindicato.com.br/sindicatos/'+ this.props.user.id + '/convencoes')
     handleClickNoticias = () => WebBrowser.openBrowserAsync('https://www.seusindicato.com.br/sindicatos/'+ this.props.user.sindicato_id + '/noticias')
     handleTalkToUs = () => WebBrowser.openBrowserAsync('https://www.seusindicato.com.br/faleconosco/'+ this.props.user.sindicato_id )
 

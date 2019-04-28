@@ -19,7 +19,5 @@ export const requestVideos = (page = 0) => async dispatch => {
     hasMore: Boolean(response.data.length)
   }
 
-  console.log(data)
-
   return dispatch(fetchVideos(data))
 }

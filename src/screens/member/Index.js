@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
         paddingVertical: 4,
         display: 'flex',
         width: '50%',
-        height: 140
+        height: 115
     },
     escolhaNews: {
         backgroundColor: '#F9B208'
@@ -71,6 +71,12 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         resizeMode: 'contain'
+    },
+    boxImgFerias: {
+        backgroundColor: '#f5a000'
+    },
+    boxImgPremios: {
+        backgroundColor: '#0095c5'
     },
     carteirinhaBtn: {
         display: 'flex',
@@ -157,11 +163,11 @@ class MemberIndex extends React.Component {
                         </View>
                     </View>
                     <View style={{flex: 1, flexDirection: 'row'}}>
-                        <View style={styles.escolhaBox}>
-                            <Image source={coloniaFerias} style={styles.boxImg}/>
+                        <View style={[styles.escolhaBox]}>
+                            <Image source={coloniaFerias} style={[styles.boxImg, styles.boxImgFerias]}/>
                         </View>
                         <View style={styles.escolhaBox}>
-                            <Image source={premios} style={styles.boxImg}/>
+                            <Image source={premios} style={[styles.boxImg, styles.boxImgPremios]}/>
                         </View>
                     </View>
                 </View>

@@ -77,6 +77,25 @@ class Wizard extends React.Component {
               paddingHorizontal: 30,
               paddingTop: 0
           },
+          seuSindicatoBtnContainer: {
+              paddingHorizontal: 0,
+              paddingVertical: 0,
+              flexDirection: 'column',
+              justifyContent: 'center',
+              backgroundColor: '#FABB20',
+              width: '100%',
+              height: 100,
+              display: 'flex',
+              flexDirection: 'row'
+          },
+          seuSindicatoBtnWrapper: {
+
+          },
+          seuSindicatoBtnArrow: {
+              backgroundColor: '#E95B11',
+              color: '#F9B308',
+              height: '100%'
+          }
       })
 
       const dimensions = Dimensions.get('window');
@@ -100,45 +119,42 @@ class Wizard extends React.Component {
                       </Container>
                   </Header>
 
-                  <Container style={{ backgroundColor: '#DED9D5' }}>
+                  <Container style={{ backgroundColor: '#006599' }}>
                       <Content contentContainerStyle={{ flex: 1 }}>
 
                           <View style={ styles.viewWrapper }>
-                              <View style={{ width: '20%', height: '100%', backgroundColor: '#ACC7D2', borderStyle: 'solid', borderRightWidth: 3, borderRightColor: 'white' }}></View>
-                              <View style={{ width: '80%', height: '100%', backgroundColor: '#86D4DD', paddingHorizontal: 15, paddingVertical: 5 }}>
-                                  <Text style={{ fontSize: 13, color: '#fff' }}>Informação rápida e precisa, sobre as leis que regulam o nosso dia a dia</Text>
+                              <View style={{ width: '100%', height: '100%', backgroundColor: '#006599', paddingHorizontal: 15, paddingVertical: 5 }}>
+                                  <Text style={{ fontSize: 13, color: '#006599', backgroundColor: '#fff' }}>Seu canal de informação</Text>
+                                  <Text style={{ fontSize: 13, color: '#fff', backgroundColor: '#006599', borderColor: '#fff', borderWidth: 2 }}>sobre leis, direitos e deveres</Text>
                               </View>
                           </View>
 
-                          <View style={{ display: 'flex', height: 150 }}>
+                          <View style={{ paddingHorizontal: 10, paddingVertical: 10, flex: 1, height: 350 }}>
+                              <View style={{ paddingHorizontal: 10, paddingVertical: 10, height: 200 }}>
+                                  { Boolean(featuredVideo) && <WebView source={{ uri: "https://www.youtube.com/embed/" + featuredVideo.youtube_id + "?rel=0&controls=1&showinfo=0&loop=1" }} /> }
+                              </View>
+
+                              <View style={{ paddingHorizontal: 10, paddingVertical: 10, height: 50 }}>
+                                  <TouchableHighlight onPress={this.handleGoToLogin}>
+                                      <Text style={{ color: '#003E6F', backgroundColor: '#fff' }}>Mais Vídeos ></Text>
+                                  </TouchableHighlight>
+                              </View>
+                          </View>
+
+                          <View style={{ display: 'flex', backgroundColor: '#10253A', height: 250, paddingVertical: 20, paddingHorizontal: 30 }}>
                               <MainSlider propagandas={featuredPropagandas} />
                           </View>
 
-                          <View style={{ paddingHorizontal: 10, paddingVertical: 10, flex: 1, height: 400 }}>
-                              <View style={{ paddingHorizontal: 10, paddingVertical: 10, backgroundColor: '#fff', height: '100%' }}>
-                                  { Boolean(featuredVideo) && <WebView source={{ uri: "https://www.youtube.com/embed/" + featuredVideo.youtube_id + "?rel=0&controls=1&showinfo=0&loop=1" }} /> }
-                              </View>
-                          </View>
 
-                          <View style={{alignItems: 'flex-end', paddingHorizontal: 24, paddingVertical: 12, flexDirection: 'row', justifyContent: 'center', backgroundColor: '#cccccc', width: '100%', height: 45, display: 'flex' }}>
+                          <View style={ styles.seuSindicatoBtnContainer }>
 
-                                  <View style={{ display: 'flex', width: '33.3%', height: '100%', justifyContent: 'center', paddingHorizontal: 0 }}>
-                                      <TouchableHighlight onPress={this.handleGoToVideos}>
-                                          <Image onClick={this.handleGoToLogin} source={require('../../../assets/icons/outros-videos.png')} style={{ width: '100%', height: '100%', resizeMode: Image.resizeMode.contain }} />
-                                      </TouchableHighlight>
+                              <TouchableHighlight onPress={this.handleGoToLogin}>
+                                  <View style={ styles.seuSindicatoBtnWrapper }>
+                                      <Image onClick={this.handleGoToLogin} source={require('../../../assets/icons/seu-sindicato.png')} style={{ width: 45, height: 45, resizeMode: Image.resizeMode.contain }} />
+                                      <Text></Text>
+                                      <Text style={ styles.seuSindicatoBtnArrow }>></Text>
                                   </View>
-
-                                  <View style={{ display: 'flex', width: '33.3%', height: '100%', justifyContent: 'center', borderStyle: 'solid', borderLeftWidth: 1, borderLeftColor: 'white', borderRightWidth: 1, borderRightColor: 'white', paddingHorizontal: 0 }}>
-                                      <TouchableHighlight onPress={this.handleGoToLogin}>
-                                          <Image onClick={this.handleGoToLogin} source={require('../../../assets/icons/seu-sindicato.png')} style={{ width: '100%', height: '100%', resizeMode: Image.resizeMode.contain }} />
-                                      </TouchableHighlight>
-                                  </View>
-
-                                  <View style={{ display: 'flex', width: '33.3%', height: '100%', justifyContent: 'center', paddingHorizontal: 0 }}>
-                                      <TouchableHighlight onPress={this.handleOpenFacebook}>
-                                          <Image onClick={this.handleGoToLogin} source={require('../../../assets/icons/facebook-icon.png')} style={{ width: '100%', height: '100%', resizeMode: Image.resizeMode.contain }} />
-                                      </TouchableHighlight>
-                                  </View>
+                              </TouchableHighlight>
 
                           </View>
 

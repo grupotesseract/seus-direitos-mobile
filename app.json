@@ -5,8 +5,8 @@
     "description": "Somos uma empresa com a intenção de levar informações sobre leis, direitos, deveres e dia-a-dia de forma mais humana e acessível a sociedade.",
     "slug": "seusdireitos",
     "privacy": "public",
-    "sdkVersion": "27.0.0",
-    "version": "1.0.0",
+    "sdkVersion": "32.0.0",
+    "version": "2.0.0",
     "orientation": "portrait",
     "primaryColor": "#3F51B5",
     "icon": "./assets/icons/app_icon.png",
@@ -22,11 +22,11 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.seusdireitos",
-      "buildNumber": "1.0"
+      "buildNumber": "2.0"
     },
     "android": {
       "package": "com.seusdireitos",
-      "versionCode": 3
+      "versionCode": 4
     }
   }
 }

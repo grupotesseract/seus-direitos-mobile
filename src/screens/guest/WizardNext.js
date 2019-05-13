@@ -63,7 +63,7 @@ class Wizard extends React.Component {
           },
           imgLogo: {
               width: 150,
-              resizeMode: Image.resizeMode.contain,
+              resizeMode: 'contain',
               display: 'flex'
           },
           containerView: {
@@ -124,19 +124,19 @@ class Wizard extends React.Component {
 
                                   <View style={{ display: 'flex', width: '33.3%', height: '100%', justifyContent: 'center', paddingHorizontal: 0 }}>
                                       <TouchableHighlight onPress={this.handleGoToVideos}>
-                                          <Image onClick={this.handleGoToLogin} source={require('../../../assets/icons/outros-videos.png')} style={{ width: '100%', height: '100%', resizeMode: Image.resizeMode.contain }} />
+                                          <Image onClick={this.handleGoToLogin} source={require('../../../assets/icons/outros-videos.png')} style={{ width: '100%', height: '100%', resizeMode: 'contain' }} />
                                       </TouchableHighlight>
                                   </View>
 
                                   <View style={{ display: 'flex', width: '33.3%', height: '100%', justifyContent: 'center', borderStyle: 'solid', borderLeftWidth: 1, borderLeftColor: 'white', borderRightWidth: 1, borderRightColor: 'white', paddingHorizontal: 0 }}>
                                       <TouchableHighlight onPress={this.handleGoToLogin}>
-                                          <Image onClick={this.handleGoToLogin} source={require('../../../assets/icons/seu-sindicato.png')} style={{ width: '100%', height: '100%', resizeMode: Image.resizeMode.contain }} />
+                                          <Image onClick={this.handleGoToLogin} source={require('../../../assets/icons/seu-sindicato.png')} style={{ width: '100%', height: '100%', resizeMode: 'contain' }} />
                                       </TouchableHighlight>
                                   </View>
 
                                   <View style={{ display: 'flex', width: '33.3%', height: '100%', justifyContent: 'center', paddingHorizontal: 0 }}>
                                       <TouchableHighlight onPress={this.handleOpenFacebook}>
-                                          <Image onClick={this.handleGoToLogin} source={require('../../../assets/icons/facebook-icon.png')} style={{ width: '100%', height: '100%', resizeMode: Image.resizeMode.contain }} />
+                                          <Image onClick={this.handleGoToLogin} source={require('../../../assets/icons/facebook-icon.png')} style={{ width: '100%', height: '100%', resizeMode: 'contain' }} />
                                       </TouchableHighlight>
                                   </View>
 

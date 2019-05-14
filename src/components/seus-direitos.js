@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     img: {
         width: 150,
         height: 100,
-        resizeMode: Image.resizeMode.contain,
+        resizeMode: 'contain',
         marginBottom: 16
     },
     margin: {

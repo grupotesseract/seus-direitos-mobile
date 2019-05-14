@@ -5,7 +5,7 @@ import {Text} from 'native-base'
 const styles = StyleSheet.create({
     img: {
         width: '100%',
-        resizeMode: Image.resizeMode.contain,
+        resizeMode: 'contain',
         marginBottom: 16
     },
     margin: {

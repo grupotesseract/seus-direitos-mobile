@@ -26,7 +26,7 @@ class Wizard extends React.Component {
           return this.props.navigation.navigate('MemberIndex')
       }
 
-      return this.props.navigation.navigate('GuestLogin')
+      return this.props.navigation.navigate('PreLogin')
   }
 
   handleOpenCLT () {
@@ -63,7 +63,7 @@ class Wizard extends React.Component {
           },
           imgLogo: {
               width: 150,
-              resizeMode: Image.resizeMode.contain,
+              resizeMode: 'contain',
               display: 'flex'
           },
           containerView: {

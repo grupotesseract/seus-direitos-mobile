@@ -13,7 +13,7 @@ export default ({ loggedIn = false }) => createAppContainer(
       GuestWizard: { screen: GuestWizard },
       GuestWizardNext: { screen: GuestWizardNext },
       GuestLogin: { screen: GuestLogin },
-      PreLogin: { screen: PreLogin }
+      PreLogin: { screen: PreLogin },
       GuestRegister: { screen: GuestRegister },
       GuestVideos: { screen: GuestVideos },
       MemberIndex: { screen: MemberIndex },

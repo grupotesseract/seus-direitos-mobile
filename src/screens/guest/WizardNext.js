@@ -84,17 +84,50 @@ class Wizard extends React.Component {
               justifyContent: 'center',
               backgroundColor: '#FABB20',
               width: '100%',
-              height: 100,
+              height: 90,
               display: 'flex',
               flexDirection: 'row'
           },
           seuSindicatoBtnWrapper: {
-
+              display: 'flex',
+              flexDirection: 'row',
+              height: '100%',
+              alignItems: 'center',
+              justifyContent: 'flex-end',
+              position: 'relative',
           },
           seuSindicatoBtnArrow: {
               backgroundColor: '#E95B11',
               color: '#F9B308',
-              height: '100%'
+              paddingHorizontal: 12,
+              textAlign: 'center',
+              paddingVertical: 31,
+              position: 'absolute',
+              right: -30
+          },
+          seuSindicatoBtnText: {
+              fontFamily: 'niramid-medium',
+              fontSize: 16,
+              lineHeight: 18,
+              marginLeft: 25,
+              marginRight: 10,
+              textAlign: 'right',
+          },
+          orangeText: {
+              color: '#E95B11',
+          },
+          borderedText: {
+              borderColor: '#006699',
+              borderWidth: 1,
+              borderRadius: 4,
+              marginTop: 3,
+              width: 170,
+              start: 10,
+              paddingVertical: 1,
+              textAlign: 'center'
+          },
+          blueText: {
+              color: '#006699'
           }
       })
 
@@ -124,24 +157,24 @@ class Wizard extends React.Component {
 
                           <View style={ styles.viewWrapper }>
                               <View style={{ width: '100%', height: '100%', backgroundColor: '#006599', paddingHorizontal: 15, paddingVertical: 5 }}>
-                                  <Text style={{ fontSize: 13, color: '#006599', backgroundColor: '#fff' }}>Seu canal de informação</Text>
-                                  <Text style={{ fontSize: 13, color: '#fff', backgroundColor: '#006599', borderColor: '#fff', borderWidth: 2 }}>sobre leis, direitos e deveres</Text>
+                                  <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#006599', backgroundColor: '#fff', width: 260, paddingVertical: 5, textAlign: 'center', fontStyle: 'italic' }}>Seu canal de INFORMAÇÃO</Text>
+                                  <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#fff', backgroundColor: '#006599', borderColor: '#fff', borderWidth: 2, width: 220, paddingVertical: 5, textAlign: 'center', fontStyle: 'italic', start: 155 }}>sobre leis, direitos e deveres</Text>
                               </View>
                           </View>
 
-                          <View style={{ paddingHorizontal: 10, paddingVertical: 10, flex: 1, height: 350 }}>
+                          <View style={{ paddingHorizontal: 10, paddingVertical: 10, flex: 1, height: 350, marginTop: 25 }}>
                               <View style={{ paddingHorizontal: 10, paddingVertical: 10, height: 200 }}>
                                   { Boolean(featuredVideo) && <WebView source={{ uri: "https://www.youtube.com/embed/" + featuredVideo.youtube_id + "?rel=0&controls=1&showinfo=0&loop=1" }} /> }
                               </View>
 
                               <View style={{ paddingHorizontal: 10, paddingVertical: 10, height: 50 }}>
-                                  <TouchableHighlight onPress={this.handleGoToLogin}>
-                                      <Text style={{ color: '#003E6F', backgroundColor: '#fff' }}>Mais Vídeos ></Text>
+                                  <TouchableHighlight onPress={this.handleGoToVideos}>
+                                      <Text style={{ color: '#003E6F', backgroundColor: '#fff' }}>MAIS VÍDEOS ></Text>
                                   </TouchableHighlight>
                               </View>
                           </View>
 
-                          <View style={{ display: 'flex', backgroundColor: '#10253A', height: 250, paddingVertical: 20, paddingHorizontal: 30 }}>
+                          <View style={{ display: 'flex', backgroundColor: '#10253A', height: 200, paddingVertical: 20, paddingHorizontal: 30 }}>
                               <MainSlider propagandas={featuredPropagandas} />
                           </View>
 
@@ -150,9 +183,15 @@ class Wizard extends React.Component {
 
                               <TouchableHighlight onPress={this.handleGoToLogin}>
                                   <View style={ styles.seuSindicatoBtnWrapper }>
-                                      <Image onClick={this.handleGoToLogin} source={require('../../../assets/icons/seu-sindicato.png')} style={{ width: 45, height: 45, resizeMode: Image.resizeMode.contain }} />
-                                      <Text></Text>
-                                      <Text style={ styles.seuSindicatoBtnArrow }>></Text>
+                                      <Image source={require('../../../assets/icons/seu-sindicato.png')} style={{ width: 135, resizeMode: 'contain', start: -5 }} />
+                                      <View style={{ marginRight: 10 }}>
+                                          <Text style={[styles.seuSindicatoBtnText]}>Conheça o Seu Sindicato</Text>
+                                          <Text style={[styles.seuSindicatoBtnText, styles.orangeText, styles.borderedText]}>O app do trabalhador</Text>
+                                          <Text style={[styles.seuSindicatoBtnText, styles.blueText]}>acesse aqui</Text>
+                                      </View>
+                                      <View style={ styles.seuSindicatoBtnArrow }>
+                                          <Image source={require('../../../assets/icons/right_arrow.png')} style={{ width: 15 }} />
+                                      </View>
                                   </View>
                               </TouchableHighlight>
 

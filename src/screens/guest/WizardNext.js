@@ -137,6 +137,7 @@ class Wizard extends React.Component {
 
       return (
           <Drawer
+              side="right"
               ref={(ref) => { this.drawer = ref; }}
               content={<SideBar navigation={this.props.navigation} />}
               onClose={() => this.closeDrawer()}>
@@ -158,23 +159,23 @@ class Wizard extends React.Component {
                           <View style={ styles.viewWrapper }>
                               <View style={{ width: '100%', height: '100%', backgroundColor: '#006599', paddingHorizontal: 15, paddingVertical: 5 }}>
                                   <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#006599', backgroundColor: '#fff', width: 260, paddingVertical: 5, textAlign: 'center', fontStyle: 'italic' }}>Seu canal de INFORMAÇÃO</Text>
-                                  <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#fff', backgroundColor: '#006599', borderColor: '#fff', borderWidth: 2, width: 220, paddingVertical: 5, textAlign: 'center', fontStyle: 'italic', start: 155 }}>sobre leis, direitos e deveres</Text>
+                                  <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#fff', backgroundColor: '#006599', borderColor: '#fff', borderWidth: 2, width: 220, paddingVertical: 5, textAlign: 'center', fontStyle: 'italic', position: 'absolute', right: 20, bottom: -27 }}>sobre leis, direitos e deveres</Text>
                               </View>
                           </View>
 
-                          <View style={{ paddingHorizontal: 10, paddingVertical: 10, flex: 1, height: 350, marginTop: 25 }}>
-                              <View style={{ paddingHorizontal: 10, paddingVertical: 10, height: 200 }}>
+                          <View style={{ paddingHorizontal: 20, paddingVertical: 10, flex: 1, height: 350, marginTop: 45, backgroundColor: '#003E6F' }}>
+                              <View style={{ paddingVertical: 10, height: 220 }}>
                                   { Boolean(featuredVideo) && <WebView source={{ uri: "https://www.youtube.com/embed/" + featuredVideo.youtube_id + "?rel=0&controls=1&showinfo=0&loop=1" }} /> }
                               </View>
 
-                              <View style={{ paddingHorizontal: 10, paddingVertical: 10, height: 50 }}>
+                              <View style={{ paddingVertical: 0, height: 30, width: 140, textAlign: 'center', bottom: 5, right: 10, position: 'absolute' }}>
                                   <TouchableHighlight onPress={this.handleGoToVideos}>
-                                      <Text style={{ color: '#003E6F', backgroundColor: '#fff' }}>MAIS VÍDEOS ></Text>
+                                      <Text style={{ color: '#003E6F', backgroundColor: '#fff', textAlign: 'center', fontWeight: 'bold' }}>MAIS VÍDEOS ></Text>
                                   </TouchableHighlight>
                               </View>
                           </View>
 
-                          <View style={{ display: 'flex', backgroundColor: '#10253A', height: 200, paddingVertical: 20, paddingHorizontal: 30 }}>
+                          <View style={{ display: 'flex', backgroundColor: '#10253A', height: 170, paddingVertical: 20, paddingHorizontal: 30 }}>
                               <MainSlider propagandas={featuredPropagandas} />
                           </View>
 

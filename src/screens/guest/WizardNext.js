@@ -77,6 +77,58 @@ class Wizard extends React.Component {
               paddingHorizontal: 30,
               paddingTop: 0
           },
+          seuSindicatoBtnContainer: {
+              paddingHorizontal: 0,
+              paddingVertical: 0,
+              flexDirection: 'column',
+              justifyContent: 'center',
+              backgroundColor: '#FABB20',
+              width: '100%',
+              height: 90,
+              display: 'flex',
+              flexDirection: 'row'
+          },
+          seuSindicatoBtnWrapper: {
+              display: 'flex',
+              flexDirection: 'row',
+              height: '100%',
+              alignItems: 'center',
+              justifyContent: 'flex-end',
+              position: 'relative',
+          },
+          seuSindicatoBtnArrow: {
+              backgroundColor: '#E95B11',
+              color: '#F9B308',
+              paddingHorizontal: 12,
+              textAlign: 'center',
+              paddingVertical: 31,
+              position: 'absolute',
+              right: -30
+          },
+          seuSindicatoBtnText: {
+              fontFamily: 'niramid-medium',
+              fontSize: 16,
+              lineHeight: 18,
+              marginLeft: 25,
+              marginRight: 10,
+              textAlign: 'right',
+          },
+          orangeText: {
+              color: '#E95B11',
+          },
+          borderedText: {
+              borderColor: '#006699',
+              borderWidth: 1,
+              borderRadius: 4,
+              marginTop: 3,
+              width: 170,
+              start: 10,
+              paddingVertical: 1,
+              textAlign: 'center'
+          },
+          blueText: {
+              color: '#006699'
+          }
       })
 
       const dimensions = Dimensions.get('window');
@@ -85,6 +137,7 @@ class Wizard extends React.Component {
 
       return (
           <Drawer
+              side="right"
               ref={(ref) => { this.drawer = ref; }}
               content={<SideBar navigation={this.props.navigation} />}
               onClose={() => this.closeDrawer()}>
@@ -100,45 +153,48 @@ class Wizard extends React.Component {
                       </Container>
                   </Header>
 
-                  <Container style={{ backgroundColor: '#DED9D5' }}>
+                  <Container style={{ backgroundColor: '#006599' }}>
                       <Content contentContainerStyle={{ flex: 1 }}>
 
                           <View style={ styles.viewWrapper }>
-                              <View style={{ width: '20%', height: '100%', backgroundColor: '#ACC7D2', borderStyle: 'solid', borderRightWidth: 3, borderRightColor: 'white' }}></View>
-                              <View style={{ width: '80%', height: '100%', backgroundColor: '#86D4DD', paddingHorizontal: 15, paddingVertical: 5 }}>
-                                  <Text style={{ fontSize: 13, color: '#fff' }}>Informação rápida e precisa, sobre as leis que regulam o nosso dia a dia</Text>
+                              <View style={{ width: '100%', height: '100%', backgroundColor: '#006599', paddingHorizontal: 15, paddingVertical: 5 }}>
+                                  <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#006599', backgroundColor: '#fff', width: 260, paddingVertical: 5, textAlign: 'center', fontStyle: 'italic' }}>Seu canal de INFORMAÇÃO</Text>
+                                  <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#fff', backgroundColor: '#006599', borderColor: '#fff', borderWidth: 2, width: 220, paddingVertical: 5, textAlign: 'center', fontStyle: 'italic', position: 'absolute', right: 20, bottom: -27 }}>sobre leis, direitos e deveres</Text>
                               </View>
                           </View>
 
-                          <View style={{ display: 'flex', height: 150 }}>
+                          <View style={{ paddingHorizontal: 20, paddingVertical: 10, flex: 1, height: 350, marginTop: 45, backgroundColor: '#003E6F' }}>
+                              <View style={{ paddingVertical: 10, height: 220 }}>
+                                  { Boolean(featuredVideo) && <WebView source={{ uri: "https://www.youtube.com/embed/" + featuredVideo.youtube_id + "?rel=0&controls=1&showinfo=0&loop=1" }} /> }
+                              </View>
+
+                              <View style={{ paddingVertical: 0, height: 30, width: 140, textAlign: 'center', bottom: 5, right: 10, position: 'absolute' }}>
+                                  <TouchableHighlight onPress={this.handleGoToVideos}>
+                                      <Text style={{ color: '#003E6F', backgroundColor: '#fff', textAlign: 'center', fontWeight: 'bold' }}>MAIS VÍDEOS ></Text>
+                                  </TouchableHighlight>
+                              </View>
+                          </View>
+
+                          <View style={{ display: 'flex', backgroundColor: '#10253A', height: 170, paddingVertical: 20, paddingHorizontal: 30 }}>
                               <MainSlider propagandas={featuredPropagandas} />
                           </View>
 
-                          <View style={{ paddingHorizontal: 10, paddingVertical: 10, flex: 1, height: 400 }}>
-                              <View style={{ paddingHorizontal: 10, paddingVertical: 10, backgroundColor: '#fff', height: '100%' }}>
-                                  { Boolean(featuredVideo) && <WebView source={{ uri: "https://www.youtube.com/embed/" + featuredVideo.youtube_id + "?rel=0&controls=1&showinfo=0&loop=1" }} /> }
-                              </View>
-                          </View>
 
-                          <View style={{alignItems: 'flex-end', paddingHorizontal: 24, paddingVertical: 12, flexDirection: 'row', justifyContent: 'center', backgroundColor: '#cccccc', width: '100%', height: 45, display: 'flex' }}>
+                          <View style={ styles.seuSindicatoBtnContainer }>
 
-                                  <View style={{ display: 'flex', width: '33.3%', height: '100%', justifyContent: 'center', paddingHorizontal: 0 }}>
-                                      <TouchableHighlight onPress={this.handleGoToVideos}>
-                                          <Image onClick={this.handleGoToVideos} source={require('../../../assets/icons/outros-videos.png')} style={{ width: '100%', height: '100%', resizeMode: 'contain' }} />
-                                      </TouchableHighlight>
+                              <TouchableHighlight onPress={this.handleGoToLogin}>
+                                  <View style={ styles.seuSindicatoBtnWrapper }>
+                                      <Image source={require('../../../assets/icons/seu-sindicato.png')} style={{ width: 135, resizeMode: 'contain', start: -5 }} />
+                                      <View style={{ marginRight: 10 }}>
+                                          <Text style={[styles.seuSindicatoBtnText]}>Conheça o Seu Sindicato</Text>
+                                          <Text style={[styles.seuSindicatoBtnText, styles.orangeText, styles.borderedText]}>O app do trabalhador</Text>
+                                          <Text style={[styles.seuSindicatoBtnText, styles.blueText]}>acesse aqui</Text>
+                                      </View>
+                                      <View style={ styles.seuSindicatoBtnArrow }>
+                                          <Image source={require('../../../assets/icons/right_arrow.png')} style={{ width: 15 }} />
+                                      </View>
                                   </View>
-
-                                  <View style={{ display: 'flex', width: '33.3%', height: '100%', justifyContent: 'center', borderStyle: 'solid', borderLeftWidth: 1, borderLeftColor: 'white', borderRightWidth: 1, borderRightColor: 'white', paddingHorizontal: 0 }}>
-                                      <TouchableHighlight onPress={this.handleGoToLogin}>
-                                          <Image onClick={this.handleGoToLogin} source={require('../../../assets/icons/seu-sindicato.png')} style={{ width: '100%', height: '100%', resizeMode: 'contain' }} />
-                                      </TouchableHighlight>
-                                  </View>
-
-                                  <View style={{ display: 'flex', width: '33.3%', height: '100%', justifyContent: 'center', paddingHorizontal: 0 }}>
-                                      <TouchableHighlight onPress={this.handleOpenFacebook}>
-                                          <Image onClick={this.handleOpenFacebook} source={require('../../../assets/icons/facebook-icon.png')} style={{ width: '100%', height: '100%', resizeMode: 'contain' }} />
-                                      </TouchableHighlight>
-                                  </View>
+                              </TouchableHighlight>
 
                           </View>
 

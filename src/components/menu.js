@@ -9,19 +9,12 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     sidebarContainer: {
-        flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start',
-        backgroundColor: '#F5FCFF',
-        paddingHorizontal: 20,
-        paddingVertical: 20
+        backgroundColor: '#000',
+        height: '100%'
     },
     menuItem: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        paddingVertical: 8,
-        display: 'flex',
-        width: '100%'
+        fontSize: 18,
+        fontWeight: 'bold'
     }
 })
 
@@ -42,7 +35,7 @@ class SideBar extends Component {
             return this.props.navigation.navigate('MemberIndex')
         }
 
-        return this.props.navigation.navigate('GuestLogin')
+        return this.props.navigation.navigate('PreLogin')
     }
 
     handleOpenFacebook () {
@@ -53,15 +46,24 @@ class SideBar extends Component {
         return (
                 <View style={[ styles.sidebarContainer, { backgroundColor: '#fff' } ]}>
                     <TouchableHighlight onPress={this.handleGoToVideos}>
-                        <Text style={ styles.menuItem }>OUTROS VÍDEOS</Text>
-                    </TouchableHighlight>
-
-                    <TouchableHighlight onPress={this.handleGoToLogin}>
-                        <Text style={ styles.menuItem }>SEU SINDICATO</Text>
+                        <View style={{ backgroundColor: '#ECEFF6', width: '100%', alignItems: 'center', justifyContent: 'center', paddingVertical: 20 }}>
+                            <Text style={ styles.menuItem }>Mais vídeos</Text>
+                            <Image source={require('../../assets/icons/mais-videos-icon.png')} style={{ width: 50, height: 60, resizeMode: 'contain' }} />
+                        </View>
                     </TouchableHighlight>
 
                     <TouchableHighlight onPress={this.handleOpenFacebook}>
-                        <Text style={ styles.menuItem }>FACEBOOK</Text>
+                        <View style={{ backgroundColor: '#D5E1F1', width: '100%', alignItems: 'center', justifyContent: 'center', paddingVertical: 20 }}>
+                            <Text style={ styles.menuItem }>Facebook</Text>
+                            <Image source={require('../../assets/icons/face-icon.png')} style={{ width: 50, height: 50, marginTop: 10, resizeMode: 'contain' }} />
+                        </View>
+                    </TouchableHighlight>
+
+                    <TouchableHighlight onPress={this.handleGoToLogin}>
+                        <View style={{ backgroundColor: '#B3CEE9', width: '100%', alignItems: 'center', justifyContent: 'center', paddingVertical: 20 }}>
+                            <Text style={ styles.menuItem }>Visite o app</Text>
+                            <Image source={require('../../assets/icons/seu-sindicato.png')} style={{ width: 135, height: 50, marginTop: 10, resizeMode: 'contain' }} />
+                        </View>
                     </TouchableHighlight>
                 </View>
                );

@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         fontSize: 14
     },
     textBold: {
-        fontWeight: 'bold'
+        // fontWeight: 'bold'
     },
     textColored: {
         backgroundColor: '#E43B10',

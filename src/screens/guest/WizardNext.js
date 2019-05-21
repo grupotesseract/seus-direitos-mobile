@@ -163,19 +163,19 @@ class Wizard extends React.Component {
                               </View>
                           </View>
 
-                          <View style={{ paddingHorizontal: 20, paddingVertical: 10, flex: 1, height: 350, marginTop: 45, backgroundColor: '#003E6F' }}>
-                              <View style={{ paddingVertical: 10, height: 220 }}>
+                          <View style={{ paddingHorizontal: 20, paddingVertical: 10, flex: 1, height: 360, marginTop: 45, backgroundColor: '#003E6F' }}>
+                              <View style={{ paddingVertical: 5, height: 220 }}>
                                   { Boolean(featuredVideo) && <WebView source={{ uri: "https://www.youtube.com/embed/" + featuredVideo.youtube_id + "?rel=0&controls=1&showinfo=0&loop=1" }} /> }
                               </View>
 
-                              <View style={{ paddingVertical: 0, height: 30, width: 140, textAlign: 'center', bottom: 5, right: 10, position: 'absolute' }}>
+                              <View style={{ paddingVertical: 0, height: 30, width: 140, textAlign: 'center', bottom: 2, right: 20, position: 'absolute' }}>
                                   <TouchableHighlight onPress={this.handleGoToVideos}>
                                       <Text style={{ color: '#003E6F', backgroundColor: '#fff', textAlign: 'center', fontWeight: 'bold' }}>MAIS VÍDEOS ></Text>
                                   </TouchableHighlight>
                               </View>
                           </View>
 
-                          <View style={{ display: 'flex', backgroundColor: '#10253A', height: 170, paddingVertical: 20, paddingHorizontal: 30 }}>
+                          <View style={{ display: 'flex', backgroundColor: '#10253A', height: 170, paddingVertical: 20, paddingHorizontal: 20 }}>
                               <MainSlider propagandas={featuredPropagandas} />
                           </View>
 

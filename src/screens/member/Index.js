@@ -4,12 +4,13 @@ import { StyleSheet, View, Image, TouchableOpacity } from 'react-native'
 import { WebBrowser } from 'expo'
 import MainView from '../../components/main'
 import {Button, Text, Toast} from 'native-base';
-import convencoes from '../../../assets/img/seu-sindicato/Botoes-separados_Prancheta-10.png'
-import news from '../../../assets/img/seu-sindicato/Botoes-separados-01.png'
-import faleConosco from '../../../assets/img/seu-sindicato/Botoes-separados-03.png'
-import beneficios from '../../../assets/img/seu-sindicato/Botoes-separados-02.png'
-import coloniaFerias from '../../../assets/img/seu-sindicato/Botoes-ferias.png'
-import premios from '../../../assets/img/seu-sindicato/Botoes-premios.png'
+import convencoes from '../../../assets/img/seu-sindicato/convencoes-icon.png'
+import news from '../../../assets/img/seu-sindicato/noticias-icon.png'
+import faleConosco from '../../../assets/img/seu-sindicato/fale-conosco-icon.png'
+import beneficios from '../../../assets/img/seu-sindicato/beneficios-icon.png'
+import coloniaFerias from '../../../assets/img/seu-sindicato/ferias-icon.png'
+import premios from '../../../assets/img/seu-sindicato/premios-icon.png'
+import emBreve from '../../../assets/img/seu-sindicato/em-breve-icon.png'
 import seuSindicato from '../../../assets/img/seu-sindicato.png'
 import presenteVida from '../../../assets/img/presente-vida.png'
 import setaSair from '../../../assets/icons/seta-sair.png'
@@ -45,38 +46,81 @@ const styles = StyleSheet.create({
         paddingHorizontal: 4,
         paddingVertical: 4,
         display: 'flex',
+        flexDirection: 'row',
         width: '50%',
-        height: 115
+        height: 115,
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'relative'
     },
     escolhaNews: {
-        backgroundColor: '#F9B208'
+        backgroundColor: '#F9B208',
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     escolhaBeneficios: {
-        backgroundColor: '#01669C'
+        backgroundColor: '#01669C',
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     escolhaFale: {
-        backgroundColor: '#0095C5'
+        backgroundColor: '#0095C5',
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     escolhaConvencoes: {
-        backgroundColor: '#E95B10'
+        backgroundColor: '#E95B10',
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     escolhaFerias: {
-        backgroundColor: '#f5a000'
+        backgroundColor: '#f5a000',
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     escolhaPremios: {
-        backgroundColor: '#0095c5'
+        backgroundColor: '#0095c5',
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    boxImgFerias: {
+        backgroundColor: '#f5a000',
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    boxImgPremios: {
+        backgroundColor: '#0095c5',
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     boxImg: {
         display: 'flex',
-        width: '100%',
-        height: '100%',
+        maxWidth: '100%',
+        height: 50,
         resizeMode: 'contain'
     },
-    boxImgFerias: {
-        backgroundColor: '#f5a000'
-    },
-    boxImgPremios: {
-        backgroundColor: '#0095c5'
+    boxText: {
+        color: '#fff',
+        fontFamily: 'roboto-medium',
+        textAlign: 'center',
+        marginTop: 3,
+        maxWidth: 130
     },
     carteirinhaBtn: {
         display: 'flex',
@@ -96,6 +140,14 @@ const styles = StyleSheet.create({
         height: 60,
         resizeMode: 'contain',
         justifyContent: 'flex-end'
+    },
+    emBreveIcon: {
+        position: 'absolute',
+        right: 0,
+        width: 68,
+        resizeMode: 'contain',
+        top: -30,
+        zIndex: 2
     }
 })
 
@@ -130,12 +182,13 @@ class MemberIndex extends React.Component {
                 <View style={[styles.paddingH, styles.mt]}>
                     { sindicateName && <Text uppercase style={styles.primary}>{sindicateName}</Text> }
 
-                    <View style={{ flexDirection: 'row', marginTop: 8, display: 'flex', width: '100%' }}>
+                    <View style={{ flexDirection: 'row', marginTop: 4, display: 'flex', width: '100%' }}>
                         <View style={styles.escolhaBox}>
                             <TouchableOpacity
                                 onPress={this.handleClickNoticias}
                                 style={styles.escolhaNews}>
                                 <Image source={news} style={styles.boxImg}/>
+                                <Text style={styles.boxText}>NOTÍCIAS</Text>
                             </TouchableOpacity>
                         </View>
                         <View style={styles.escolhaBox}>
@@ -143,6 +196,7 @@ class MemberIndex extends React.Component {
                                 onPress={this.handleClickBenefits}
                                 style={styles.escolhaBeneficios}>
                                 <Image source={beneficios} style={styles.boxImg}/>
+                                <Text style={styles.boxText}>BENEFÍCIOS</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -152,6 +206,7 @@ class MemberIndex extends React.Component {
                                 onPress={this.handleTalkToUs}
                                 style={styles.escolhaFale}>
                                 <Image source={faleConosco} style={styles.boxImg}/>
+                                <Text style={styles.boxText}>FALE CONOSCO</Text>
                             </TouchableOpacity>
                         </View>
                         <View style={styles.escolhaBox}>
@@ -159,28 +214,39 @@ class MemberIndex extends React.Component {
                                 onPress={this.handleClickConvencoes}
                                 style={styles.escolhaConvencoes}>
                                 <Image source={convencoes} style={styles.boxImg}/>
+                                <Text style={styles.boxText}>CONVENÇÕES COLETIVAS</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
                     <View style={{flex: 1, flexDirection: 'row'}}>
                         <View style={[styles.escolhaBox]}>
-                            <Image source={coloniaFerias} style={[styles.boxImg, styles.boxImgFerias]}/>
+                            <TouchableOpacity
+                                style={styles.boxImgFerias}>
+                                <Image source={emBreve} style={[styles.emBreveIcon]}/>
+                                <Image source={coloniaFerias} style={[styles.boxImg]}/>
+                                <Text style={styles.boxText}>COLÔNIA DE FÉRIAS</Text>
+                            </TouchableOpacity>
                         </View>
                         <View style={styles.escolhaBox}>
-                            <Image source={premios} style={[styles.boxImg, styles.boxImgPremios]}/>
+                            <TouchableOpacity
+                                style={styles.boxImgPremios}>
+                                <Image source={emBreve} style={[styles.emBreveIcon]}/>
+                                <Image source={premios} style={[styles.boxImg]}/>
+                                <Text style={styles.boxText}>CONCORRA A PRÊMIOS</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 </View>
 
-                <View style={[styles.paddingH, styles.mt]}>
-                    <View style={{ marginTop: 8, paddingHorizontal: 4 }}>
+                <View style={[styles.paddingH]}>
+                    <View style={{ paddingHorizontal: 4 }}>
                         <Button onPress={this.handleClickCarteirinha} style={styles.carteirinhaBtn}>
                             <Text uppercase style={styles.carteirinhaText}>Carteirinha</Text>
                         </Button>
                     </View>
                 </View>
 
-                <View style={{ paddingHorizontal: 16, marginTop: 8, display: 'flex', width: '100%', flexDirection: 'row' }}>
+                <View style={{ paddingHorizontal: 16, marginTop: 5, display: 'flex', width: '100%', flexDirection: 'row' }}>
                     <View style={{ width: '45%', display: 'flex', flexDirection: 'row', justifyContent: 'flex-start' }}>
                         <Image source={seuSindicato} style={styles.fraseImg} />
                     </View>
@@ -189,7 +255,7 @@ class MemberIndex extends React.Component {
                     </View>
                 </View>
 
-                <View style={{ paddingHorizontal: 16, marginTop: 15, display: 'flex', width: '100%', justifyContent: 'flex-start' }}>
+                <View style={{ paddingHorizontal: 16, display: 'flex', width: '100%', justifyContent: 'flex-start' }}>
                     <Button
                         transparent
                         block

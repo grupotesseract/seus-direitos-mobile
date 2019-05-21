@@ -14,8 +14,8 @@ const styles = StyleSheet.create({
     mtDez: {
         marginTop: 10,
     },
-    mt25: {
-        marginTop: 25
+    mt15: {
+        marginTop: 15
     },
     mb: {
         marginBottom: 12
@@ -43,7 +43,8 @@ const styles = StyleSheet.create({
     },
     textStyle: {
         fontFamily: 'niramid-medium',
-        fontSize: 18
+        fontSize: 18,
+        lineHeight: 22
     },
     textLittle: {
         fontSize: 14
@@ -69,6 +70,9 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 20,
         paddingVertical: 5
+    },
+    seuSindicatoImg: {
+        width: 250
     }
 })
 
@@ -88,7 +92,7 @@ class PreLogin extends React.Component {
             <MainView style={{ flex: 1 }} extraScroll={5}>
                 <ImageBackground style={styles.container} imageStyle={{resizeMode: 'stretch'}} source={require('../../../assets/img/LoginBG.jpg')}>
                     <View style={styles.bordered}>
-                        <SeuSindicato noMargin />
+                        <SeuSindicato noMargin styleProp={styles.seuSindicatoImg} />
                     </View>
 
                     <View style={[styles.bordered]}>
@@ -97,14 +101,14 @@ class PreLogin extends React.Component {
                         <Text style={[styles.textStyle, styles.textBold]}>em um mesmo lugar</Text>
                     </View>
 
-                    <View style={[styles.bordered, styles.mt25]}>
+                    <View style={[styles.bordered, styles.mt15]}>
                         <Text style={[styles.textStyle, styles.textBlueList, styles.textBold]}>LEIA NOTÍCIA</Text>
                         <Text style={[styles.textStyle, styles.textBlueList, styles.textBold]}>CONHEÇA BENEFÍCIOS</Text>
                         <Text style={[styles.textStyle, styles.textBlueList, styles.textBold]}>FALE COM REPRESENTANTES DA SUA CATEGORIA</Text>
                         <Text style={[styles.textStyle, styles.textBlueList, styles.textBold]}>UTILIZE A CARTEIRINHA VIRTUAL</Text>
                     </View>
 
-                    <View style={[styles.bordered, styles.mt25, styles.alignedCenter]}>
+                    <View style={[styles.bordered, styles.mt15, styles.alignedCenter]}>
                         <Text style={[styles.textStyle, styles.textLittle]}>Ja é cadastrado?</Text>
                         <Text onPress={this.handleGoToLogin} style={[styles.bluePreBtn, styles.textStyle]}> { 'entrar'.toLowerCase() } </Text>
 

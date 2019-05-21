@@ -18,10 +18,10 @@ const styles = StyleSheet.create({
     }
 })
 
-export default function ({ noMargin = false }) {
+export default function ({ noMargin = false, styleProp = {} }) {
     return (
         <View style={[styles.container, !noMargin && styles.margin]}>
-            <Image source={require('../../assets/icons/seu-sindicato.png')} style={styles.img} />
+            <Image source={require('../../assets/icons/seu-sindicato.png')} style={[styles.img, styleProp]} />
         </View>
     )
 }

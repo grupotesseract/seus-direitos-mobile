@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     bordered: {
         width: '100%',
         display: 'flex',
-        paddingHorizontal: 60
+        paddingHorizontal: 30
     },
     paddingH: {
         paddingHorizontal: 16,
@@ -43,18 +43,19 @@ const styles = StyleSheet.create({
     },
     textStyle: {
         fontFamily: 'niramid-medium',
-        fontSize: 18,
+        fontSize: 16,
         lineHeight: 22
     },
     textLittle: {
         fontSize: 14
     },
     textBold: {
-        // fontWeight: 'bold'
+        fontWeight: 'bold'
     },
     textColored: {
         backgroundColor: '#E43B10',
         color: '#FFE063',
+        alignSelf: 'flex-start',
         width: 'auto'
     },
     textBlueList: {
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
         paddingVertical: 5
     },
     seuSindicatoImg: {
-        width: 250
+        width: 200
     }
 })
 
@@ -96,9 +97,9 @@ class PreLogin extends React.Component {
                     </View>
 
                     <View style={[styles.bordered]}>
-                        <Text style={[styles.textStyle, styles.textBold]}>Todas as informações sobre</Text>
-                        <Text style={[styles.textColored, styles.textStyle, styles.textBold]}>sua categoria de trabalho,</Text>
-                        <Text style={[styles.textStyle, styles.textBold]}>em um mesmo lugar</Text>
+                        <Text style={[styles.textStyle]}>Todas as informações sobre</Text>
+                        <Text style={[styles.textColored, styles.textStyle]}>sua categoria de trabalho,</Text>
+                        <Text style={[styles.textStyle]}>em um mesmo lugar</Text>
                     </View>
 
                     <View style={[styles.bordered, styles.mt15]}>

@@ -7,6 +7,7 @@ import {WebBrowser} from 'expo'
 import SideBar from '../../components/menu'
 import MainSlider from '../../components/main-slider'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import { ScrollView } from 'react-native-gesture-handler';
 
 class Wizard extends React.Component {
     constructor(props) {
@@ -15,6 +16,7 @@ class Wizard extends React.Component {
         this.handleOpenCLT = this.handleOpenCLT.bind(this)
         this.handleGoToLogin = this.handleGoToLogin.bind(this)
         this.handleGoToVideos = this.handleGoToVideos.bind(this)
+        this.closeDrawer = this.closeDrawer.bind(this)
     }
 
   handleGoToVideos () {
@@ -139,7 +141,7 @@ class Wizard extends React.Component {
           <Drawer
               side="right"
               ref={(ref) => { this.drawer = ref; }}
-              content={<SideBar navigation={this.props.navigation} />}
+              content={<SideBar navigation={this.props.navigation} close={this.closeDrawer} />}
               onClose={() => this.closeDrawer()}>
               <Container style={{ display: 'flex', width: '100%' }}>
                   <Header style={ styles.containerView }>
@@ -156,6 +158,7 @@ class Wizard extends React.Component {
                   <Container style={{ backgroundColor: '#006599' }}>
                       <Content contentContainerStyle={{ flex: 1 }}>
 
+                        <ScrollView>
                           <View style={ styles.viewWrapper }>
                               <View style={{ width: '100%', height: '100%', backgroundColor: '#006599', paddingHorizontal: 15, paddingVertical: 5 }}>
                                   <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#006599', backgroundColor: '#fff', width: 260, paddingVertical: 5, textAlign: 'center', fontStyle: 'italic' }}>Seu canal de INFORMAÇÃO</Text>
@@ -163,7 +166,7 @@ class Wizard extends React.Component {
                               </View>
                           </View>
 
-                          <View style={{ paddingHorizontal: 20, paddingVertical: 10, flex: 1, height: 360, marginTop: 45, backgroundColor: '#003E6F' }}>
+                          <View style={{ paddingHorizontal: 20, paddingVertical: 10, flex: 1, height: 280, marginTop: 45, backgroundColor: '#003E6F' }}>
                               <View style={{ paddingVertical: 5, height: 220 }}>
                                   { Boolean(featuredVideo) && <WebView source={{ uri: "https://www.youtube.com/embed/" + featuredVideo.youtube_id + "?rel=0&controls=1&showinfo=0&loop=1" }} /> }
                               </View>
@@ -178,6 +181,7 @@ class Wizard extends React.Component {
                           <View style={{ display: 'flex', backgroundColor: '#10253A', height: 170, paddingVertical: 20, paddingHorizontal: 20 }}>
                               <MainSlider propagandas={featuredPropagandas} />
                           </View>
+                        </ScrollView>
 
 
                           <View style={ styles.seuSindicatoBtnContainer }>

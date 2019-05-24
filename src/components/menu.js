@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Image, Text, Platform, TouchableHighlight } from 'react-native'
-import { Container, Content, Drawer, Header, Button } from 'native-base'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import { StyleSheet, View, Image, Text, TouchableHighlight } from 'react-native'
 import {WebBrowser} from 'expo'
 
 const styles = StyleSheet.create({
@@ -24,6 +22,11 @@ class SideBar extends Component {
 
         this.handleGoToLogin = this.handleGoToLogin.bind(this)
         this.handleGoToVideos = this.handleGoToVideos.bind(this)
+        this.handleCloseMenu = this.handleCloseMenu.bind(this)
+    }
+
+    handleCloseMenu () {
+        return this.props.close()
     }
 
     handleGoToVideos () {
@@ -45,6 +48,11 @@ class SideBar extends Component {
     render() {
         return (
                 <View style={[ styles.sidebarContainer, { backgroundColor: '#fff' } ]}>
+                    <TouchableHighlight onPress={this.handleCloseMenu}>
+                        <View style={{ backgroundColor: '#FFFFFF', width: '100%', alignItems: 'center', justifyContent: 'center' }}>
+                            <Image source={require('../../assets/icons/app-loading.png')} style={{ width: 200, height: 130, resizeMode: 'contain' }} />
+                        </View>
+                    </TouchableHighlight>
                     <TouchableHighlight onPress={this.handleGoToVideos}>
                         <View style={{ backgroundColor: '#ECEFF6', width: '100%', alignItems: 'center', justifyContent: 'center', paddingVertical: 20 }}>
                             <Text style={ styles.menuItem }>Mais vídeos</Text>

@@ -181,9 +181,6 @@ class Wizard extends React.Component {
                           <View style={{ display: 'flex', backgroundColor: '#10253A', height: 170, paddingVertical: 20, paddingHorizontal: 20 }}>
                               <MainSlider propagandas={featuredPropagandas} />
                           </View>
-                        </ScrollView>
-
-
                           <View style={ styles.seuSindicatoBtnContainer }>
 
                               <TouchableHighlight onPress={this.handleGoToLogin}>
@@ -201,7 +198,7 @@ class Wizard extends React.Component {
                               </TouchableHighlight>
 
                           </View>
-
+                        </ScrollView>
                       </Content>
                   </Container>
 

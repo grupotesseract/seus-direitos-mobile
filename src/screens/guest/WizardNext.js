@@ -202,8 +202,8 @@ class Wizard extends React.Component {
                           </View>
                           <View style={ styles.seuSindicatoBtnContainer }>
                             <TouchableHighlight  onPress={this.handleGoToLogin}>
-                                <View style ={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', paddingLeft: 2}}>
-                                    <Image source={require('../../../assets/icons/seu-sindicato.png')} style={{ alignSelf: 'flex-start', height: 32, width: 100 ,resizeMode: 'contain' }} />
+                                <View style ={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', paddingLeft: 5}}>
+                                    <Image source={require('../../../assets/icons/seu-sindicato.png')} style={{ alignSelf: 'center', height: 32, width: 100 ,resizeMode: 'contain' }} />
                                     <View style={{ padding: 8, flexDirection: 'column', alignItems: 'flex-end', justifyItems:'flex-end', textAlign:'right' }}>
                                         <Text style={[styles.seuSindicatoBtnText]}>Conheça o Seu Sindicato</Text>
                                         <Text style={[styles.seuSindicatoBtnText, styles.orangeText, styles.borderedText]}>O app do trabalhador</Text>

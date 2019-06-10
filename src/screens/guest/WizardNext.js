@@ -1,13 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { StyleSheet, View, WebView, Image, Dimensions, TouchableHighlight, Linking } from 'react-native'
-import { Content, Container, Button, Drawer, Header, Text, H2 } from 'native-base'
+import { Content, Container, Drawer, Header, Text } from 'native-base'
 import Title from '../../components/title'
 import {WebBrowser} from 'expo'
 import SideBar from '../../components/menu'
 import MainSlider from '../../components/main-slider'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { ScrollView } from 'react-native-gesture-handler';
 
 class Wizard extends React.Component {
     constructor(props) {
@@ -137,8 +136,9 @@ class Wizard extends React.Component {
                       </Container>
                   </Header>
 
-                  <Container style={{ backgroundColor: '#006599' }}>
-                      <Content contentContainerStyle={{ flex: 1, flexDirection:'column', justifyContent:'flex-end' }}>
+                  <Container style={{ display: 'flex', alignItems: 'stretch', backgroundColor: '#006599'}}>
+                    <Content contentContainerStyle={{flexGrow: 2, display: 'flex', flexDirection: 'column', justifyContent:'flex-end'}}>
+                      <View style={{ flex: 2, flexDirection:'column', justifyContent:'flex-start'}}>
                           <View style={{   
                             display: 'flex',
                             flexDirection: 'column',
@@ -148,8 +148,9 @@ class Wizard extends React.Component {
                             paddingBottom: 5, 
                             width: '100%',
                             alignItems: 'flex-start',
-                            justifyContent: 'flex-start',
-                            justifyItems: 'flex-start',
+                            justifyContent: 'center',
+                            justifyItems: 'center',
+                            flexGrow: 2
                             }}>
                                 <Text style={{ 
                                     fontSize: 20, 
@@ -181,7 +182,7 @@ class Wizard extends React.Component {
                                 </Text>
                           </View>
 
-                          <View style={{ paddingHorizontal: 20, paddingVertical: 5, marginTop: 60, backgroundColor: '#003E6F' }}>
+                          <View style={{ paddingHorizontal: 20, paddingVertical: 5, marginTop: 60, backgroundColor: '#003E6F'}}>
                               <View style={{ height: ((dimensions.width-40)/16)*9, marginTop: -60 }}>
                                   { Boolean(featuredVideo) && <WebView source={{ uri: "https://www.youtube.com/embed/" + featuredVideo.youtube_id + "?rel=0&controls=1&showinfo=0&loop=1" }} /> }
                               </View>
@@ -192,17 +193,17 @@ class Wizard extends React.Component {
                                   </TouchableHighlight>
                               </View>
                           </View>
-
-                        { console.log(dimensions) }
+                        </View>
+                      <View style={{ flex: 1, flexDirection:'column', justifyContent:'flex-end', backgroundColor: '#003E6F' }}>
                           <View style={{ display: 'flex', backgroundColor: '#10253A',  padding: 20 }}>
-                            <View style={{height: ((dimensions.width-40)/3),}}>
+                            <View style={{height: ((dimensions.width-40)/3)}}>
                               <MainSlider propagandas={featuredPropagandas} />
                             </View>
                           </View>
                           <View style={ styles.seuSindicatoBtnContainer }>
                             <TouchableHighlight  onPress={this.handleGoToLogin}>
-                                <View style ={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', paddingLeft: 10}}>
-                                    <Image source={require('../../../assets/icons/seu-sindicato.png')} style={{ alignSelf: 'center', height: 32, width: 100 ,resizeMode: 'contain' }} />
+                                <View style ={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', paddingLeft: 2}}>
+                                    <Image source={require('../../../assets/icons/seu-sindicato.png')} style={{ alignSelf: 'flex-start', height: 32, width: 100 ,resizeMode: 'contain' }} />
                                     <View style={{ padding: 8, flexDirection: 'column', alignItems: 'flex-end', justifyItems:'flex-end', textAlign:'right' }}>
                                         <Text style={[styles.seuSindicatoBtnText]}>Conheça o Seu Sindicato</Text>
                                         <Text style={[styles.seuSindicatoBtnText, styles.orangeText, styles.borderedText]}>O app do trabalhador</Text>
@@ -215,6 +216,7 @@ class Wizard extends React.Component {
                             </TouchableHighlight>
 
                           </View>
+                        </View>
                       </Content>
                   </Container>
 
